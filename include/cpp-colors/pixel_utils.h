@@ -3,7 +3,7 @@
 #include <cassert>
 #include <cstdint>
 #include "pixel_format.h"
-#include "color_exception.h"
+#include "color_error.h"
 
 namespace colors {
 
@@ -104,7 +104,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot get the size of a pixel.");
-        throw color_exception("Cannot get the size of a pixel.");
+        throw color_error("Cannot get the size of a pixel.");
       }
     }
 
@@ -137,7 +137,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel alpha mask.");
-        throw color_exception("Cannot retreive the pixel alpha mask.");
+        throw color_error("Cannot retreive the pixel alpha mask.");
       }
     }
 
@@ -170,7 +170,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel red mask.");
-        throw color_exception("Cannot retreive the pixel red mask.");
+        throw color_error("Cannot retreive the pixel red mask.");
       }
     }
 
@@ -203,7 +203,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel green mask.");
-        throw color_exception("Cannot retreive the pixel green mask.");
+        throw color_error("Cannot retreive the pixel green mask.");
       }
     }
 
@@ -236,7 +236,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel blue mask.");
-        throw color_exception("Cannot retreive the pixel blue mask.");
+        throw color_error("Cannot retreive the pixel blue mask.");
       }
     }
 
@@ -269,7 +269,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel alpha shift.");
-        throw color_exception("Cannot retreive the pixel alpha shift.");
+        throw color_error("Cannot retreive the pixel alpha shift.");
       }
     }
 
@@ -302,7 +302,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel red shift.");
-        throw color_exception("Cannot retreive the pixel red shift.");
+        throw color_error("Cannot retreive the pixel red shift.");
       }
     }
 
@@ -335,7 +335,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel green shift.");
-        throw color_exception("Cannot retreive the pixel green shift.");
+        throw color_error("Cannot retreive the pixel green shift.");
       }
     }
 
@@ -368,7 +368,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel blue shift.");
-        throw color_exception("Cannot retreive the pixel blue shift.");
+        throw color_error("Cannot retreive the pixel blue shift.");
       }
     }
 
@@ -401,7 +401,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel red bits.");
-        throw color_exception("Cannot retreive the pixel red bits.");
+        throw color_error("Cannot retreive the pixel red bits.");
       }
     }
 
@@ -434,7 +434,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel green bits.");
-        throw color_exception("Cannot retreive the pixel green bits.");
+        throw color_error("Cannot retreive the pixel green bits.");
       }
     }
 
@@ -467,7 +467,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel blue bits.");
-        throw color_exception("Cannot retreive the pixel blue bits.");
+        throw color_error("Cannot retreive the pixel blue bits.");
       }
     }
 
@@ -500,7 +500,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot retreive the pixel alpha bits.");
-        throw color_exception("Cannot retreive the pixel alpha bits.");
+        throw color_error("Cannot retreive the pixel alpha bits.");
       }
     }
 
@@ -535,7 +535,7 @@ namespace colors {
 
       default:
         assert(false && "Cannot determine whether the given pixel format is compressed.");
-        throw color_exception("Cannot determine whether the given pixel format is compressed.");
+        throw color_error("Cannot determine whether the given pixel format is compressed.");
       }
     }
 

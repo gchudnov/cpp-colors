@@ -3,12 +3,10 @@
 #include "constants_impl.h"
 
 #if defined(CORE_COLOR_CONST_DOT_NET)
-#pragma message("NamedConstants: DotNet") 
 #include "dotnet/dotnet_named.h"
 #endif
 
 #if defined(CORE_COLOR_CONST_WPF)
-#pragma message("NamedConstants: WPF") 
 #include "wpf/wpf_named.h"
 #endif
 

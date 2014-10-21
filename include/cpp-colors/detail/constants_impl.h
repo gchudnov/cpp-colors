@@ -1,13 +1,11 @@
 #pragma once
 
 #if defined(CORE_COLOR_CONST_DOT_NET)
-#pragma message("ColorConstants: DotNet") 
-#include "detail/dotnet/dotnet_constants.h"
+#include "dotnet/dotnet_constants.h"
 #endif
 
 #if defined(CORE_COLOR_CONST_WPF)
-#pragma message("ColorConstants: WPF") 
-#include "detail/wpf/wpf_constants.h"
+#include "wpf/wpf_constants.h"
 #endif
 
 namespace colors {

@@ -34,7 +34,7 @@ namespace colors {
     // Get the value of the color
     static color_constant::known_color value(const string_type& str) {
       const string_color_map& sm = color_mapper_type::get_string_to_color_map();
-      string_color_map::const_iterator it = sm.find(to_lowercase(str));
+      typename string_color_map::const_iterator it = sm.find(to_lowercase(str));
       if (it == sm.end())
         throw std::invalid_argument("Invalid color name.");
 
@@ -44,7 +44,7 @@ namespace colors {
     // Get the name of the color
     static string_type name(uint32_t value) {
       const color_string_map& vm = color_mapper_type::get_color_to_string_map();
-      color_string_map::const_iterator it = vm.find(value);
+      typename color_string_map::const_iterator it = vm.find(value);
       if (it == vm.end())
         throw std::invalid_argument("Invalid color value.");
 

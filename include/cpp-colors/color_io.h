@@ -122,7 +122,7 @@ namespace colors {
       }
 
       operator string_type() {
-        return to_argb_str_dispatch<CharT, color_type::value_type, color_type::pixel_traits_type, false>(c);
+        return to_argb_str_dispatch<CharT, typename color_type::value_type, typename color_type::pixel_traits_type, false>(c);
       }
     };
 
@@ -169,7 +169,7 @@ namespace colors {
       }
 
       operator string_type() {
-        return to_rgb_str_dispatch<CharT, color_type::value_type, color_type::pixel_traits_type, false>(c);
+        return to_rgb_str_dispatch<CharT, typename color_type::value_type, typename color_type::pixel_traits_type, false>(c);
       }
     };
 
@@ -216,7 +216,7 @@ namespace colors {
       }
 
       operator string_type() {
-        return to_ahex_str_dispatch<CharT, color_type::value_type, color_type::pixel_traits_type, false>(c);
+        return to_ahex_str_dispatch<CharT, typename color_type::value_type, typename color_type::pixel_traits_type, false>(c);
       }
     };
 
@@ -262,7 +262,7 @@ namespace colors {
       }
 
       operator string_type() {
-        return to_hex_str_dispatch<CharT, color_type::value_type, color_type::pixel_traits_type, false>(c);
+        return to_hex_str_dispatch<CharT, typename color_type::value_type, typename color_type::pixel_traits_type, false>(c);
       }
     };
 
@@ -329,28 +329,28 @@ namespace colors {
   template <typename CharT, typename T, typename PixelTraits>
   inline std::basic_string<CharT> to_hex_str(const basic_color<T, PixelTraits>& c) {
     typedef basic_color<T, PixelTraits> color_type;
-    return to_hex_str_dispatch<CharT, T, PixelTraits, std::is_floating_point<color_type::value_type>::value >(c);
+    return to_hex_str_dispatch<CharT, T, PixelTraits, std::is_floating_point<typename color_type::value_type>::value >(c);
   }
 
   // Convert to [Color HEX with Alpha (#AARRGGBB)]
   template <typename CharT, typename T, typename PixelTraits>
   inline std::basic_string<CharT> to_ahex_str(const basic_color<T, PixelTraits>& c) {
     typedef basic_color<T, PixelTraits> color_type;
-    return to_ahex_str_dispatch<CharT, T, PixelTraits, std::is_floating_point<color_type::value_type>::value >(c);
+    return to_ahex_str_dispatch<CharT, T, PixelTraits, std::is_floating_point<typename color_type::value_type>::value >(c);
   }
 
   // Convert to [Color RGB rgb(r,g,b)], ignore alpha
   template <typename CharT, typename T, typename PixelTraits>
   inline std::basic_string<CharT> to_rgb_str(const basic_color<T, PixelTraits>& c) {
     typedef basic_color<T, PixelTraits> color_type;
-    return to_rgb_str_dispatch<CharT, T, PixelTraits, std::is_floating_point<color_type::value_type>::value >(c);
+    return to_rgb_str_dispatch<CharT, T, PixelTraits, std::is_floating_point<typename color_type::value_type>::value >(c);
   }
 
   // Convert to [Color RGB with Alpha argb(a,r,g,b)]
   template <typename CharT, typename T, typename PixelTraits>
   inline std::basic_string<CharT> to_argb_str(const basic_color<T, PixelTraits>& c) {
     typedef basic_color<T, PixelTraits> color_type;
-    return to_argb_str_dispatch<CharT, T, PixelTraits, std::is_floating_point<color_type::value_type>::value >(c);
+    return to_argb_str_dispatch<CharT, T, PixelTraits, std::is_floating_point<typename color_type::value_type>::value >(c);
   }
 
 
@@ -373,7 +373,7 @@ namespace colors {
   template <typename CharT, typename CharTraits, typename T, typename PixelTraits>
   void parse_hex(std::basic_istream<CharT, CharTraits>& is, basic_color<T, PixelTraits>& c) {
     typedef basic_color<T, PixelTraits> color_type;
-    typedef color_type::channel_type    channel_type;
+    typedef typename color_type::channel_type    channel_type;
     typedef std::basic_stringstream<CharT, CharTraits, std::allocator<CharT> > stringstream_type;
 
     // allowed format #RRGGBB or #AARRGGBB
@@ -441,7 +441,7 @@ namespace colors {
   template <typename CharT, typename CharTraits, typename T, typename PixelTraits>
   void parse_argb(std::basic_istream<CharT, CharTraits>& is, basic_color<T, PixelTraits>& c) {
     typedef basic_color<T, PixelTraits> color_type;
-    typedef color_type::channel_type    channel_type;
+    typedef typename color_type::channel_type    channel_type;
     typedef std::basic_stringstream<CharT, CharTraits, std::allocator<CharT> > stringstream_type;
 
     CharT ch;
@@ -503,7 +503,7 @@ namespace colors {
   template <typename CharT, typename CharTraits, typename T, typename PixelTraits>
   void parse_rgb(std::basic_istream<CharT, CharTraits>& is, basic_color<T, PixelTraits>& c) {
     typedef basic_color<T, PixelTraits> color_type;
-    typedef color_type::channel_type    channel_type;
+    typedef typename color_type::channel_type    channel_type;
     typedef std::basic_stringstream<CharT, CharTraits, std::allocator<CharT> > stringstream_type;
 
     CharT ch;
@@ -561,7 +561,7 @@ namespace colors {
   template <typename CharT, typename CharTraits, typename T, typename PixelTraits>
   inline std::basic_istream<CharT, CharTraits>& operator>>(std::basic_istream<CharT, CharTraits>& is, basic_color<T, PixelTraits>& c) {
     typedef basic_color<T, PixelTraits> color_type;
-    typedef color_type::channel_type    channel_type;
+    typedef typename color_type::channel_type    channel_type;
     typedef std::basic_stringstream<CharT, CharTraits, std::allocator<CharT> > stringstream_type;
 
     // Parse Formats:

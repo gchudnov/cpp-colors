@@ -49,17 +49,17 @@ namespace colors {
     struct not_equal_converter {
       template <uint8_t SrcBPC, uint8_t DstBPC, typename T>
       static T run(T value) {
-        typedef std::conditional < SrcBPC < DstBPC, less_converter, greater_conveter>::type conv_type;
+        typedef typename std::conditional < SrcBPC < DstBPC, less_converter, greater_conveter>::type conv_type;
         return conv_type::run<SrcBPC, DstBPC>(value);
       }
     };
 
-    // converts Value from the Source to Destination bits representstion
+    // converts Value from the Source to Destination bits representation
     // SrcBPC ? DstBPC
     struct converter {
       template <uint8_t SrcBPC, uint8_t DstBPC, typename T>
       static T run(T value) {
-        typedef std::conditional<SrcBPC == DstBPC, equal_converter, not_equal_converter>::type conv_type;
+        typedef typename std::conditional<SrcBPC == DstBPC, equal_converter, not_equal_converter>::type conv_type;
         return conv_type::run<SrcBPC, DstBPC>(value);
       }
     };
@@ -86,7 +86,7 @@ namespace colors {
       // dstBPC - Destination BitsPerChannel
       template <uint8_t SrcBPC, uint8_t DstBPC>
       static typename PixelTraits::channel_type to_channel_value(value_type value) {
-        return static_cast<PixelTraits::channel_type>(converter::run<SrcBPC, DstBPC>(static_cast<pixel_type>(value)));
+        return static_cast<typename PixelTraits::channel_type>(converter::run<SrcBPC, DstBPC>(static_cast<pixel_type>(value)));
       }
 
       // Convert Source Channel Value into the <T>
@@ -113,13 +113,13 @@ namespace colors {
       template <uint8_t SrcBPC, uint8_t DstBPC>
       static typename PixelTraits::channel_type to_channel_value(value_type value) {
         if (value <= min_value()) {
-          return static_cast<PixelTraits::channel_type>(0);
+          return static_cast<typename PixelTraits::channel_type>(0);
         }
         else if (value >= max_value()) {
-          return static_cast<PixelTraits::channel_type>((1 << DstBPC) - 1);
+          return static_cast<typename PixelTraits::channel_type>((1 << DstBPC) - 1);
         }
         else {
-          return static_cast<PixelTraits::channel_type>(value * (1 << DstBPC));
+          return static_cast<typename PixelTraits::channel_type>(value * (1 << DstBPC));
         }
       }
 
@@ -197,7 +197,7 @@ namespace colors {
 
     template <typename U, typename UT>
     basic_color(const basic_color<U, UT>& other) {
-      PixelTraits::pixel_type packed = other.traits_value<PixelTraits>();
+      typename PixelTraits::pixel_type packed = other.template traits_value<PixelTraits>();
       basic_color temp = basic_color::create_from_value<PixelTraits>(packed);
       std::swap(*this, temp);
     }
@@ -220,7 +220,8 @@ namespace colors {
     static basic_color create_from_value(typename ST::pixel_type value) {
       typedef typename ST::pixel_type src_pixel_type;
 
-      return basic_color((element_traits_type::from_channel_value<ST::bits_a, PixelTraits::bits_a>((value & ST::mask_a) >> ST::shift_a)),
+      return basic_color(
+        (element_traits_type::from_channel_value<ST::bits_a, PixelTraits::bits_a>((value & ST::mask_a) >> ST::shift_a)),
         (element_traits_type::from_channel_value<ST::bits_r, PixelTraits::bits_r>((value & ST::mask_r) >> ST::shift_r)),
         (element_traits_type::from_channel_value<ST::bits_g, PixelTraits::bits_g>((value & ST::mask_g) >> ST::shift_g)),
         (element_traits_type::from_channel_value<ST::bits_b, PixelTraits::bits_b>((value & ST::mask_b) >> ST::shift_b))
@@ -233,7 +234,8 @@ namespace colors {
       typedef typename DT::pixel_type   dest_pixel_type;
       typedef typename DT::channel_type dest_channel_type;
 
-      dest_pixel_type value = (((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_a, DT::bits_a>(a)) << DT::shift_a) & DT::mask_a) |
+      dest_pixel_type value = (
+        ((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_a, DT::bits_a>(a)) << DT::shift_a) & DT::mask_a) |
         ((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_r, DT::bits_r>(r)) << DT::shift_r) & DT::mask_r) |
         ((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_g, DT::bits_g>(g)) << DT::shift_g) & DT::mask_g) |
         ((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_b, DT::bits_b>(b)) << DT::shift_b) & DT::mask_b)

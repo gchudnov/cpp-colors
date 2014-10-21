@@ -1,7 +1,6 @@
 #pragma once
 
 #include <boost/noncopyable.hpp>
-#include "../color.h"
 
 namespace colors {
   namespace detail {
