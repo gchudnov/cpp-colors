@@ -402,11 +402,16 @@ namespace colors {
 
     static_assert(index < PixelTraits::size, "Color index is out of range.");
 
+    pixel_type shift_a = PixelTraits::shift_a;
+    pixel_type shift_r = PixelTraits::shift_r;
+    pixel_type shift_g = PixelTraits::shift_g;
+    pixel_type shift_b = PixelTraits::shift_b;
+
     pair_type arr[PixelTraits::size] = {
-      pair_type(PixelTraits::shift_a, &c.a),
-      pair_type(PixelTraits::shift_r, &c.r),
-      pair_type(PixelTraits::shift_g, &c.g),
-      pair_type(PixelTraits::shift_b, &c.b)
+      pair_type(shift_a, &c.a),
+      pair_type(shift_r, &c.r),
+      pair_type(shift_g, &c.g),
+      pair_type(shift_b, &c.b)
     };
     std::sort(arr, arr + PixelTraits::size, [](const pair_type& lhs, const pair_type& rhs) -> bool { return lhs.first > rhs.first; });
 

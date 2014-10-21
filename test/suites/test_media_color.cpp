@@ -230,34 +230,34 @@ TEST(Color, CanBeConvertedToStringAndBack) {
   ASSERT_EQ(c1, c2);
 }
 
-//TEST(ColorComponents, CanBeReadAndWrite) {
-//  color c(255, 51, 153, 204);
-//
-//  // access
-//  color::value_type a = get<0>(c);
-//  color::value_type r = get<1>(c);
-//  color::value_type g = get<2>(c);
-//  color::value_type b = get<3>(c);
-//
-//  ASSERT_EQ(255, a);
-//  ASSERT_EQ(51, r);
-//  ASSERT_EQ(153, g);
-//  ASSERT_EQ(204, b);
-//
-//  // modify
-//  get<0>(c) = 100;
-//  get<1>(c) = 50;
-//  get<2>(c) = 25;
-//  get<3>(c) = 5;
-//
-//  ASSERT_EQ(100, c.a);
-//  ASSERT_EQ(50, c.r);
-//  ASSERT_EQ(25, c.g);
-//  ASSERT_EQ(5, c.b);
-//
-//  // bounds test
-//  // get<10>(c); // will issue the compile-time error
-//}
+TEST(ColorComponents, CanBeReadAndWrite) {
+  color c(255, 51, 153, 204);
+
+  // access
+  color::value_type a = get<0>(c);
+  color::value_type r = get<1>(c);
+  color::value_type g = get<2>(c);
+  color::value_type b = get<3>(c);
+
+  ASSERT_EQ(255, a);
+  ASSERT_EQ(51, r);
+  ASSERT_EQ(153, g);
+  ASSERT_EQ(204, b);
+
+  // modify
+  get<0>(c) = 100;
+  get<1>(c) = 50;
+  get<2>(c) = 25;
+  get<3>(c) = 5;
+
+  ASSERT_EQ(100, c.a);
+  ASSERT_EQ(50, c.r);
+  ASSERT_EQ(25, c.g);
+  ASSERT_EQ(5, c.b);
+
+  // bounds test
+  // get<10>(c); // will issue the compile-time error: `Color index is out of range`
+}
 
 TEST(NamedColors, CanBeCompared) {
   ASSERT_EQ(color_constant::green, named_color_converter::value("Green"));
