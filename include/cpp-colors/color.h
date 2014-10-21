@@ -65,7 +65,6 @@ namespace colors {
     };
 
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
     // represents color channel information
     template <typename T, typename PixelTraits>
     struct element_traits;
@@ -134,7 +133,6 @@ namespace colors {
 
 
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
   // represents a color of a single pixel
   // T           -- might be an INTEGER or FLOAT type
   // PixelTraits -- the format of packed color
@@ -300,7 +298,7 @@ namespace colors {
   };
 
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   template <typename T, typename PixelTraits>
   bool operator ==(const basic_color<T, PixelTraits>& lhs, const basic_color<T, PixelTraits>& rhs) {
     return (lhs.a == rhs.a &&
@@ -315,7 +313,8 @@ namespace colors {
     return !(lhs == rhs);
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
   template <typename T, typename U, typename PT, typename UT>
   bool operator ==(const basic_color<T, PT>& lhs, const basic_color<U, UT>& rhs) {
     basic_color<T, PT> other(rhs);
@@ -329,7 +328,6 @@ namespace colors {
 
 
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
   template <typename T, typename PixelTraits>
   basic_color<T, PixelTraits> operator +(const basic_color<T, PixelTraits>& lhs, const basic_color<T, PixelTraits>& rhs) {
     basic_color<T, PixelTraits> result(lhs);
@@ -397,7 +395,7 @@ namespace colors {
     return *(arr[index].second);
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   typedef basic_color<uint8_t> color;       /* color_argb */
   typedef basic_color<double>  colorF;      /* color_argbF */
 

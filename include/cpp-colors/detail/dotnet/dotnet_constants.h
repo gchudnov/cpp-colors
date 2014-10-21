@@ -6,7 +6,6 @@ namespace colors {
   namespace detail {
     namespace dot_net {
 
-      ///////////////////////////////////////////////////////////////////////////////////////////////////
       // Color Constants in ARGB pixel format (bgra32_traits)
       struct color_constant
         : private boost::noncopyable {

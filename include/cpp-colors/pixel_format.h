@@ -43,13 +43,11 @@ namespace colors {
   }
 
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
   // Traits of a pixel format
   template <size_t F>
   struct pixel_traits;
 
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
   // R8G8B8 (Bgr24)
   template <>
   struct pixel_traits<pixel_format::bgr24> {
@@ -87,7 +85,7 @@ namespace colors {
     static const pixel_type shift_a = 0;
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   // A8R8G8B8 (Color; Bgra32)
   template <>
   struct pixel_traits<pixel_format::color> {
@@ -125,7 +123,7 @@ namespace colors {
     static const pixel_type shift_a = 24;
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   // X8R8G8B8 (Bgr32)
   template <>
   struct pixel_traits<pixel_format::bgr32> {
@@ -163,7 +161,7 @@ namespace colors {
     static const pixel_type shift_a = 0;
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   // A8B8G8R8 (Rgba32)
   template <>
   struct pixel_traits<pixel_format::rgba32> {
@@ -201,7 +199,7 @@ namespace colors {
     static const pixel_type shift_a = 24;
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   // X8B8G8R8 (Rgb32)
   template <>
   struct pixel_traits<pixel_format::rgb32> {
@@ -239,7 +237,7 @@ namespace colors {
     static const pixel_type shift_a = 0;
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   // R5G6B5 (Bgr565)
   template <>
   struct pixel_traits<pixel_format::bgr565> {
@@ -277,7 +275,7 @@ namespace colors {
     static const pixel_type shift_a = 0;
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   // X1R5G5B5 (Bgr555)
   template <>
   struct pixel_traits<pixel_format::bgr555> {
@@ -315,7 +313,7 @@ namespace colors {
     static const pixel_type shift_a = 0;
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   // A1R5G5B5 (Bgra5551)
   template <>
   struct pixel_traits<pixel_format::bgra5551> {

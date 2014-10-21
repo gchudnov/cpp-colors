@@ -355,7 +355,6 @@ namespace colors {
 
 
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
   template <typename CharT, typename CharTraits, typename T, typename PixelTraits>
   inline std::basic_ostream<CharT, CharTraits>& operator<<(std::basic_ostream<CharT, CharTraits>& os, const basic_color<T, PixelTraits>& c) {
     std::basic_ostringstream<CharT, CharTraits, std::allocator<CharT> > oss;

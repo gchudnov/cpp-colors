@@ -13,7 +13,6 @@
 
 namespace colors {
 
-  ///////////////////////////////////////////////////////////////////////////////
   // Used to convert named colors to the numeric value
   template <typename CharT>
   class basic_named_color_converter {

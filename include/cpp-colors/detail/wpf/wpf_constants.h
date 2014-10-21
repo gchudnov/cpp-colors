@@ -6,7 +6,6 @@ namespace colors {
   namespace detail {
     namespace wpf {
 
-      ///////////////////////////////////////////////////////////////////////////////////////////////////
       // Color Constants in ARGB pixel format (bgra32_traits)
       struct color_constant
         : private boost::noncopyable {

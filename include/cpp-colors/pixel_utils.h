@@ -25,7 +25,6 @@ namespace colors {
 
 
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
     // Stride is the count of bytes between scanlines.
     // Generally speaking, the bits that make up the pixels of a bitmap are packed into rows.
     // A single row should be long enough to store one row of the bitmap's pixels.
@@ -505,7 +504,6 @@ namespace colors {
     }
 
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
     // Returns <true> if the pixel format is compressed, false otherwise
     inline bool is_compressed(pixel_format::pixel_format pft) {
       switch (pft) {

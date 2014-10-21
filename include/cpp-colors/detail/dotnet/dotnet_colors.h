@@ -6,7 +6,6 @@ namespace colors {
   namespace detail {
     namespace dot_net {
 
-      ///////////////////////////////////////////////////////////////////////////////
       template <typename ColorType>
       struct basic_colors
         : private boost::noncopyable {
