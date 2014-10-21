@@ -1,23 +1,23 @@
 #pragma once
 
-#if defined(CORE_COLOR_CONST_DOT_NET)
+#if defined(COLOR_CONST_DOT_NET)
 #include "dotnet/dotnet_colors.h"
 #endif
 
-#if defined(CORE_COLOR_CONST_WPF)
+#if defined(COLOR_CONST_WPF)
 #include "wpf/wpf_colors.h"
 #endif
 
 namespace colors {
 
-#if defined(CORE_COLOR_CONST_DOT_NET)
+#if defined(COLOR_CONST_DOT_NET)
 
   template <typename ColorType>
   struct basic_colors {
     typedef ::colors::detail::dot_net::basic_colors<ColorType> type;
   };
 
-#elif defined(CORE_COLOR_CONST_WPF)
+#elif defined(COLOR_CONST_WPF)
 
   template <typename ColorType>
   struct basic_colors {

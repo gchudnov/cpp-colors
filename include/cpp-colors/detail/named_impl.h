@@ -2,17 +2,17 @@
 
 #include "constants_impl.h"
 
-#if defined(CORE_COLOR_CONST_DOT_NET)
+#if defined(COLOR_CONST_DOT_NET)
 #include "dotnet/dotnet_named.h"
 #endif
 
-#if defined(CORE_COLOR_CONST_WPF)
+#if defined(COLOR_CONST_WPF)
 #include "wpf/wpf_named.h"
 #endif
 
 namespace colors {
 
-#if defined(CORE_COLOR_CONST_DOT_NET)
+#if defined(COLOR_CONST_DOT_NET)
 
   template <typename CharT>
   struct basic_named_color {
@@ -24,7 +24,7 @@ namespace colors {
     typedef ::colors::detail::dot_net::basic_color_mapper<CharT> type;
   };
 
-#elif defined(CORE_COLOR_CONST_WPF)
+#elif defined(COLOR_CONST_WPF)
 
   template <typename CharT>
   struct basic_named_color {
