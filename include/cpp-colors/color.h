@@ -221,10 +221,10 @@ namespace colors {
       typedef typename ST::pixel_type src_pixel_type;
 
       return basic_color(
-        (element_traits_type::from_channel_value<ST::bits_a, PixelTraits::bits_a>((value & ST::mask_a) >> ST::shift_a)),
-        (element_traits_type::from_channel_value<ST::bits_r, PixelTraits::bits_r>((value & ST::mask_r) >> ST::shift_r)),
-        (element_traits_type::from_channel_value<ST::bits_g, PixelTraits::bits_g>((value & ST::mask_g) >> ST::shift_g)),
-        (element_traits_type::from_channel_value<ST::bits_b, PixelTraits::bits_b>((value & ST::mask_b) >> ST::shift_b))
+        (element_traits_type::template from_channel_value<ST::bits_a, PixelTraits::bits_a>((value & ST::mask_a) >> ST::shift_a)),
+        (element_traits_type::template from_channel_value<ST::bits_r, PixelTraits::bits_r>((value & ST::mask_r) >> ST::shift_r)),
+        (element_traits_type::template from_channel_value<ST::bits_g, PixelTraits::bits_g>((value & ST::mask_g) >> ST::shift_g)),
+        (element_traits_type::template from_channel_value<ST::bits_b, PixelTraits::bits_b>((value & ST::mask_b) >> ST::shift_b))
         );
     }
 
@@ -235,10 +235,10 @@ namespace colors {
       typedef typename DT::channel_type dest_channel_type;
 
       dest_pixel_type value = (
-        ((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_a, DT::bits_a>(a)) << DT::shift_a) & DT::mask_a) |
-        ((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_r, DT::bits_r>(r)) << DT::shift_r) & DT::mask_r) |
-        ((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_g, DT::bits_g>(g)) << DT::shift_g) & DT::mask_g) |
-        ((static_cast<dest_pixel_type>(element_traits_type::to_channel_value<PixelTraits::bits_b, DT::bits_b>(b)) << DT::shift_b) & DT::mask_b)
+        ((static_cast<dest_pixel_type>(element_traits_type::template to_channel_value<PixelTraits::bits_a, DT::bits_a>(a)) << DT::shift_a) & DT::mask_a) |
+        ((static_cast<dest_pixel_type>(element_traits_type::template to_channel_value<PixelTraits::bits_r, DT::bits_r>(r)) << DT::shift_r) & DT::mask_r) |
+        ((static_cast<dest_pixel_type>(element_traits_type::template to_channel_value<PixelTraits::bits_g, DT::bits_g>(g)) << DT::shift_g) & DT::mask_g) |
+        ((static_cast<dest_pixel_type>(element_traits_type::template to_channel_value<PixelTraits::bits_b, DT::bits_b>(b)) << DT::shift_b) & DT::mask_b)
         );
       return value;
     }
