@@ -372,27 +372,6 @@ namespace colors {
     return result;
   }
 
-
-  // Get the color-component by index
-  template <size_t index, typename T, typename PixelTraits>
-  inline const T& get(const basic_color<T, PixelTraits>& c) {
-    typedef const T* pointer_type;
-    typedef typename PixelTraits::pixel_type pixel_type;
-    typedef std::pair<pixel_type, pointer_type> pair_type; // shift, element
-
-    static_assert(index < PixelTraits::size, "Color index is out of range.");
-
-    pair_type arr[PixelTraits::size] = {
-      pair_type(PixelTraits::shift_a, &c.a),
-      pair_type(PixelTraits::shift_r, &c.r),
-      pair_type(PixelTraits::shift_g, &c.g),
-      pair_type(PixelTraits::shift_b, &c.b)
-    };
-    std::sort(arr, arr + PixelTraits::size, [](const pair_type& lhs, const pair_type& rhs) -> bool { return lhs.first > rhs.first; });
-
-    return *(arr[index].second);
-  }
-
   // Get the color-component by index
   template <size_t index, typename T, typename PixelTraits>
   inline T& get(basic_color<T, PixelTraits>& c) {
