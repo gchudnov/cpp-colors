@@ -50,7 +50,7 @@ namespace colors {
       template <uint8_t SrcBPC, uint8_t DstBPC, typename T>
       static T run(T value) {
         typedef typename std::conditional < SrcBPC < DstBPC, less_converter, greater_conveter>::type conv_type;
-        return conv_type::run<SrcBPC, DstBPC>(value);
+        return conv_type::template run<SrcBPC, DstBPC>(value);
       }
     };
 
@@ -60,7 +60,7 @@ namespace colors {
       template <uint8_t SrcBPC, uint8_t DstBPC, typename T>
       static T run(T value) {
         typedef typename std::conditional<SrcBPC == DstBPC, equal_converter, not_equal_converter>::type conv_type;
-        return conv_type::run<SrcBPC, DstBPC>(value);
+        return conv_type::template run<SrcBPC, DstBPC>(value);
       }
     };
 
