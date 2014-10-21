@@ -29,7 +29,7 @@ set(SOURCE_TEST_FILES
     include/cpp-colors/constants.h
     include/cpp-colors/pixel_format.h
     include/cpp-colors/pixel_utils.h
-    test/suites/test_media_color.cpp
+    test/suites/test_color.cpp
     test/tester.cpp)
 
 add_executable(run_tests ${SOURCE_TEST_FILES})
