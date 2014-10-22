@@ -19,6 +19,7 @@ A C++ color format library
 * Linux (x86/64)
    * GCC 4.8, Boost 1.54
    * Clang 3.4, Boost 1.54
+* Windows (x86/64)
    * Visual C++ 2014
 
 ### Building
