@@ -293,9 +293,9 @@ namespace colors {
 
 
   // Write named color
-  template <typename CharT, typename CharTraits, typename T, typename PixelTraits>
+  template <typename ColorMapper, typename CharT, typename CharTraits, typename T, typename PixelTraits>
   inline std::basic_ostream<CharT, CharTraits>& write_named_color(std::basic_ostream<CharT, CharTraits>& os, const basic_color<T, PixelTraits>& c) {
-    typedef basic_named_color_converter<CharT> color_converter;
+    typedef basic_named_color_converter<ColorMapper> color_converter;
 
     if (color_converter::is_named(c.value())) {
       os << color_converter::name(c.value());
@@ -305,10 +305,10 @@ namespace colors {
   }
 
   // Read named color
-  template <typename CharT, typename CharTraits, typename T, typename PixelTraits>
+  template <typename ColorMapper, typename CharT, typename CharTraits, typename T, typename PixelTraits>
   inline std::basic_istream<CharT, CharTraits>& read_named_color(std::basic_istream<CharT, CharTraits>& is, basic_color<T, PixelTraits>& c) {
     typedef std::basic_string<CharT, CharTraits> string_type;
-    typedef basic_named_color_converter<CharT> named_converter;
+    typedef basic_named_color_converter<ColorMapper> named_converter;
 
     string_type name;
     if (is >> name) {
@@ -575,8 +575,8 @@ namespace colors {
     if (is >> ch) {
       is.putback(ch);
       if (ch != symbols<CharT>::sharp && ch != symbols<CharT>::r && ch != symbols<CharT>::a) {
-        read_named_color(is, c);
-        //is.setstate(std::ios_base::failbit);
+        //read_named_color<wpf_color_mapper>(is, c);
+        is.setstate(std::ios_base::failbit);
       }
       else {
         if (ch == symbols<CharT>::sharp) {

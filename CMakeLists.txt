@@ -11,22 +11,20 @@ include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(include)
 
 set(SOURCE_TEST_FILES
-    include/cpp-colors/detail/dotnet/dotnet_colors.h
-    include/cpp-colors/detail/dotnet/dotnet_constants.h
-    include/cpp-colors/detail/dotnet/dotnet_named.h
-    include/cpp-colors/detail/wpf/wpf_colors.h
-    include/cpp-colors/detail/wpf/wpf_constants.h
-    include/cpp-colors/detail/wpf/wpf_named.h
-    include/cpp-colors/detail/colors_impl.h
-    include/cpp-colors/detail/constants_impl.h
-    include/cpp-colors/detail/named_impl.h
+    include/cpp-colors/impl/dotnet/dotnet_colors.h
+    include/cpp-colors/impl/dotnet/dotnet_constants.h
+    include/cpp-colors/impl/dotnet/dotnet_named.h
+    include/cpp-colors/impl/wpf/wpf_colors.h
+    include/cpp-colors/impl/wpf/wpf_constants.h
+    include/cpp-colors/impl/wpf/wpf_named.h
+    include/cpp-colors/impl/colors_impl.h
+    include/cpp-colors/impl/constants_impl.h
+    include/cpp-colors/impl/named_impl.h
     include/cpp-colors/color.h
     include/cpp-colors/color_error.h
     include/cpp-colors/color_io.h
     include/cpp-colors/color_named.h
     include/cpp-colors/colors.h
-    include/cpp-colors/configure.h
-    include/cpp-colors/constants.h
     include/cpp-colors/pixel_format.h
     include/cpp-colors/pixel_utils.h
     test/suites/test_color.cpp
@@ -35,7 +33,7 @@ set(SOURCE_TEST_FILES
 add_executable(run_tests ${SOURCE_TEST_FILES})
 target_link_libraries(run_tests ${GTEST_LIBRARIES} pthread)
 
-# add_executable(pretty_json examples/pretty_json.cpp)
+# add_executable(pretty_json examples/example.cpp)
 
 add_test(TestAll bin/run_tests)
 

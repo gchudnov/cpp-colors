@@ -12,48 +12,136 @@
 namespace colors {
   namespace wpf {
 
-    template <typename CharT>
+    template<typename CharT>
     struct basic_named_color;
 
-    template <>
+    template<>
     struct basic_named_color<char> {
-      static const char* const black() { return "Black"; }
-      static const char* const blue() { return "Blue"; }
-      static const char* const brown() { return "Brown"; }
-      static const char* const cyan() { return "Cyan"; }
-      static const char* const dark_gray() { return "DarkGray"; }
-      static const char* const gray() { return "Gray"; }
-      static const char* const green() { return "Green"; }
-      static const char* const light_gray() { return "LightGray"; }
-      static const char* const magenta() { return "Magenta"; }
-      static const char* const orange() { return "Orange"; }
-      static const char* const purple() { return "Purple"; }
-      static const char* const red() { return "Red"; }
-      static const char* const transparent() { return "Transparent"; }
-      static const char* const white() { return "White"; }
-      static const char* const yellow() { return "Yellow"; }
+      static const char *const black() {
+        return "Black";
+      }
+
+      static const char *const blue() {
+        return "Blue";
+      }
+
+      static const char *const brown() {
+        return "Brown";
+      }
+
+      static const char *const cyan() {
+        return "Cyan";
+      }
+
+      static const char *const dark_gray() {
+        return "DarkGray";
+      }
+
+      static const char *const gray() {
+        return "Gray";
+      }
+
+      static const char *const green() {
+        return "Green";
+      }
+
+      static const char *const light_gray() {
+        return "LightGray";
+      }
+
+      static const char *const magenta() {
+        return "Magenta";
+      }
+
+      static const char *const orange() {
+        return "Orange";
+      }
+
+      static const char *const purple() {
+        return "Purple";
+      }
+
+      static const char *const red() {
+        return "Red";
+      }
+
+      static const char *const transparent() {
+        return "Transparent";
+      }
+
+      static const char *const white() {
+        return "White";
+      }
+
+      static const char *const yellow() {
+        return "Yellow";
+      }
     };
 
-    template <>
+    template<>
     struct basic_named_color<wchar_t> {
-      static const wchar_t* const black() { return L"Black"; }
-      static const wchar_t* const blue() { return L"Blue"; }
-      static const wchar_t* const brown() { return L"Brown"; }
-      static const wchar_t* const cyan() { return L"Cyan"; }
-      static const wchar_t* const dark_gray() { return L"DarkGray"; }
-      static const wchar_t* const gray() { return L"Gray"; }
-      static const wchar_t* const green() { return L"Green"; }
-      static const wchar_t* const light_gray() { return L"LightGray"; }
-      static const wchar_t* const magenta() { return L"Magenta"; }
-      static const wchar_t* const orange() { return L"Orange"; }
-      static const wchar_t* const purple() { return L"Purple"; }
-      static const wchar_t* const red() { return L"Red"; }
-      static const wchar_t* const transparent() { return L"Transparent"; }
-      static const wchar_t* const white() { return L"White"; }
-      static const wchar_t* const yellow() { return L"Yellow"; }
+      static const wchar_t *const black() {
+        return L"Black";
+      }
+
+      static const wchar_t *const blue() {
+        return L"Blue";
+      }
+
+      static const wchar_t *const brown() {
+        return L"Brown";
+      }
+
+      static const wchar_t *const cyan() {
+        return L"Cyan";
+      }
+
+      static const wchar_t *const dark_gray() {
+        return L"DarkGray";
+      }
+
+      static const wchar_t *const gray() {
+        return L"Gray";
+      }
+
+      static const wchar_t *const green() {
+        return L"Green";
+      }
+
+      static const wchar_t *const light_gray() {
+        return L"LightGray";
+      }
+
+      static const wchar_t *const magenta() {
+        return L"Magenta";
+      }
+
+      static const wchar_t *const orange() {
+        return L"Orange";
+      }
+
+      static const wchar_t *const purple() {
+        return L"Purple";
+      }
+
+      static const wchar_t *const red() {
+        return L"Red";
+      }
+
+      static const wchar_t *const transparent() {
+        return L"Transparent";
+      }
+
+      static const wchar_t *const white() {
+        return L"White";
+      }
+
+      static const wchar_t *const yellow() {
+        return L"Yellow";
+      }
     };
 
-    template <typename CharT>
+    template<typename CharT>
     struct basic_color_mapper
       : private boost::noncopyable {
       typedef CharT char_type;
@@ -61,10 +149,10 @@ namespace colors {
       typedef basic_named_color<char_type> named_colors_traits;
 
       typedef std::map<string_type, color_constant::known_color> string_color_map;
-      typedef std::map<uint32_t, string_type>                    color_string_map;
+      typedef std::map<uint32_t, string_type> color_string_map;
 
       // Build a name -> constant map
-      static const string_color_map& get_string_to_color_map() {
+      static const string_color_map &get_string_to_color_map() {
         static string_color_map sm_;   // name -> value
         if (sm_.empty()) {
           sm_.insert(std::make_pair(to_lowercase(named_colors_traits::black()), color_constant::black));
@@ -88,7 +176,7 @@ namespace colors {
       }
 
       // Build a name -> constant map
-      static const color_string_map& get_color_to_string_map() {
+      static const color_string_map &get_color_to_string_map() {
         static color_string_map vm_;   // value -> name
 
         if (vm_.empty()) {
@@ -114,6 +202,7 @@ namespace colors {
 
     private:
       basic_color_mapper();
+
       ~basic_color_mapper();
 
     private:

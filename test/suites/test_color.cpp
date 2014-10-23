@@ -4,8 +4,6 @@
 #include <sstream>
 #include <boost/lexical_cast.hpp>
 
-//#define CORE_COLOR_CONST_DOT_NET
-
 #include "cpp-colors/colors.h"
 
 using namespace std;
@@ -13,60 +11,60 @@ using namespace colors;
 
 
 TEST(ColorFloat, CanBeCreatedFromConnstant) {
-  colorF c1 = color_constant::brown;
+  colorF c1 = wpf_color_constant::brown;
   ASSERT_EQ(0xFFA52A2A, c1.value());
 }
 
 TEST(ColorInt, CanBeCreatedFromConnstant) {
-  color c2 = color_constant::brown;
+  color c2 = wpf_color_constant::brown;
   ASSERT_EQ(0xFFA52A2A, c2.value());
 }
 
 TEST(ColorInt, CanBeAssignedFromColorFloat) {
-  color c1 = color_constant::brown;
+  color c1 = wpf_color_constant::brown;
   colorF c3 = c1;
   ASSERT_EQ(c3, c1);
 }
 
 TEST(ColorFloat, CanBeAssignedFromColorInt) {
-  colorF c2 = color_constant::brown;
+  colorF c2 = wpf_color_constant::brown;
   color c4 = c2;
   ASSERT_EQ(c2, c4);
 }
 
 TEST(ColorARGB, CanBeAssignedFromColorFloat) {
-  colorF c4 = color_constant::brown;
+  colorF c4 = wpf_color_constant::brown;
   color_abrg c5 = c4;
   ASSERT_EQ(c5, c4);
 }
 
 TEST(ColorRed, CanBeFetchedFromAConstant) {
-  color cr = color_constant::red;
+  color cr = wpf_color_constant::red;
   ASSERT_EQ(0xFFFF0000, cr.value());
 }
 
 TEST(ColorGreen, CanBeFetchedFromAConstant) {
-  color cr = color_constant::green;
+  color cr = wpf_color_constant::green;
   ASSERT_EQ(0xFF008000, cr.value());
 }
 
 TEST(ColorBlue, CanBeFetchedFromAConstant) {
-  color cr = color_constant::blue;
+  color cr = wpf_color_constant::blue;
   ASSERT_EQ(0xFF0000FF, cr.value());
 }
 
 TEST(ColorWhite, CanBeFetchedFromAConstant) {
-  color cr = color_constant::white;
+  color cr = wpf_color_constant::white;
   ASSERT_EQ(0xFFFFFFFF, cr.value());
 }
 
 TEST(ColorBlack, CanBeFetchedFromAConstant) {
-  color cr = color_constant::black;
+  color cr = wpf_color_constant::black;
   ASSERT_EQ(0xFF000000, cr.value());
 }
 
 TEST(Color, CanBeConverted) {
-  color c(color_constant::blue);
+  color c(wpf_color_constant::blue);
 
   ASSERT_EQ(0xFF0000FF, c.value()); // color, bgra32
   ASSERT_EQ(0x000000FF, c.value<pixel_format::bgr32>());
@@ -92,7 +90,7 @@ TEST(Color, CanBeConverted) {
 }
 
 TEST(Colors, CanBeAdded) {
-  color c1 = color_constant::black;
+  color c1 = wpf_color_constant::black;
   color c2(0x00010101);
 
   color c3 = c1 + c2;
@@ -100,14 +98,14 @@ TEST(Colors, CanBeAdded) {
 }
 
 TEST(Color, Constants) {
-  color c1 = ::colors::colors::red();
-  ASSERT_EQ(color(color_constant::red), c1);
+  color c1 = wpf_colors::red();
+  ASSERT_EQ(color(wpf_color_constant::red), c1);
 
-  color c2 = ::colors::colors::blue();
-  ASSERT_EQ(color(color_constant::blue), c2);
+  color c2 = wpf_colors::blue();
+  ASSERT_EQ(color(wpf_color_constant::blue), c2);
 
-  color c3 = ::colors::colors::green();
-  ASSERT_EQ(color(color_constant::green), c3);
+  color c3 = wpf_colors::green();
+  ASSERT_EQ(color(wpf_color_constant::green), c3);
 }
 
 TEST(Color, CanBeRepresentedAsHEXStringValue) {
@@ -260,28 +258,28 @@ TEST(ColorComponents, CanBeReadAndWrite) {
 }
 
 TEST(NamedColors, CanBeCompared) {
-  ASSERT_EQ(color_constant::green, named_color_converter::value("Green"));
-  ASSERT_EQ(color_constant::green, named_color_converter::value("green"));
-  ASSERT_EQ(color_constant::green, named_color_converter::value("GREEN"));
+  ASSERT_EQ(wpf_color_constant::green, wpf_named_color_converter::value("Green"));
+  ASSERT_EQ(wpf_color_constant::green, wpf_named_color_converter::value("green"));
+  ASSERT_EQ(wpf_color_constant::green, wpf_named_color_converter::value("GREEN"));
 }
 
 TEST(Color, NameCanBeFetched) {
-  ASSERT_EQ(named_color::green(), named_color_converter::name(color_constant::green));
-  ASSERT_EQ(named_color::white(), named_color_converter::name(color_constant::white));
+  ASSERT_EQ(wpf_named_color::green(), wpf_named_color_converter::name(wpf_color_constant::green));
+  ASSERT_EQ(wpf_named_color::white(), wpf_named_color_converter::name(wpf_color_constant::white));
 }
 
 TEST(Color, CanBeVerifiedAsANamedOne) {
   uint32_t invalid_value = 0x11223344;
   std::string invalid_name = "SuperGreen";
 
-  ASSERT_FALSE(named_color_converter::is_named(invalid_value));
-  ASSERT_FALSE(named_color_converter::is_named(invalid_name));
+  ASSERT_FALSE(wpf_named_color_converter::is_named(invalid_value));
+  ASSERT_FALSE(wpf_named_color_converter::is_named(invalid_name));
 }
 
 TEST(Color, CanNotBeParsedFromInvalidNamedValue) {
   try {
     uint32_t invalid_value = 0x11223344;
-    std::string dummy = named_color_converter::name(invalid_value); (void)dummy;
+    std::string dummy = wpf_named_color_converter::name(invalid_value); (void)dummy;
     FAIL() << "Must throw 'invalid_argument' exception.";
   }
   catch (std::invalid_argument& /*ex*/) {
@@ -292,7 +290,7 @@ TEST(Color, CanNotBeParsedFromInvalidNamedValue) {
 TEST(Color, CanNotBeParsedFromInvalidName) {
   try {
     std::string invalid_name = "SuperGreen";
-    uint32_t dummy = named_color_converter::value(invalid_name); (void)dummy;
+    uint32_t dummy = wpf_named_color_converter::value(invalid_name); (void)dummy;
     FAIL() << "Must throw 'invalid_argument' exception.";
   }
   catch (std::invalid_argument& /*ex*/) {
@@ -302,16 +300,16 @@ TEST(Color, CanNotBeParsedFromInvalidName) {
 
 TEST(Color, CanBeWriteAsAName) {
   std::ostringstream oss;
-  color c1(color_constant::yellow);
-  write_named_color(oss, c1);
+  color c1(wpf_color_constant::yellow);
+  write_named_color<wpf_color_mapper>(oss, c1);
 
-  ASSERT_EQ(std::string(named_color::yellow()), oss.str());
+  ASSERT_EQ(std::string(wpf_named_color::yellow()), oss.str());
 }
 
 TEST(Color, CanBeReadFromName) {
   color c2;
-  std::istringstream iss(named_color::yellow());
-  read_named_color(iss, c2);
+  std::istringstream iss(wpf_named_color::yellow());
+  read_named_color<wpf_color_mapper>(iss, c2);
 
-  ASSERT_EQ(color_constant::yellow, c2.value());
+  ASSERT_EQ(wpf_color_constant::yellow, c2.value());
 }

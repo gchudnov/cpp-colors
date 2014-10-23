@@ -7,23 +7,22 @@
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/noncopyable.hpp>
 
-#include "constants.h"
-#include "detail/named_impl.h"
-
 
 namespace colors {
 
   // Used to convert named colors to the numeric value
-  template <typename CharT>
+  template <typename ColorMapper>
   class basic_named_color_converter {
   private:
-    typedef CharT char_type;
-    typedef std::basic_string<char_type> string_type;
+    typedef ColorMapper color_mapper_type;
 
-    typedef typename basic_color_mapper<char_type>::type color_mapper_type;
+    typedef typename ColorMapper::char_type char_type;
+    typedef typename ColorMapper::string_type string_type;
 
     typedef typename color_mapper_type::string_color_map string_color_map;
     typedef typename color_mapper_type::color_string_map color_string_map;
+
+    typedef typename string_color_map::mapped_type known_color_type;
 
   private:
     basic_named_color_converter();
@@ -31,7 +30,7 @@ namespace colors {
 
   public:
     // Get the value of the color
-    static color_constant::known_color value(const string_type& str) {
+    static known_color_type value(const string_type& str) {
       const string_color_map& sm = color_mapper_type::get_string_to_color_map();
       typename string_color_map::const_iterator it = sm.find(to_lowercase(str));
       if (it == sm.end())
@@ -72,7 +71,5 @@ namespace colors {
       return str;
     }
   };
-
-  typedef basic_named_color_converter<char> named_color_converter;
 
 } // namespace colors

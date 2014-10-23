@@ -5,7 +5,6 @@
 #include <type_traits>
 #include <cstdint>
 #include "pixel_format.h"
-#include "constants.h"
 
 
 namespace colors {
@@ -180,8 +179,9 @@ namespace colors {
     }
 
     // gets the color using the packed value. The packed value must be in the bgra32_traits color format
-    // usualy we use this constructor to construct the color from some 'color constant' (see color_constants.h)
-    basic_color(color_constant::known_color c) {
+    // usualy we use this constructor to construct the color from some 'color constant'
+    template <typename ColorConstant>
+    basic_color(typename ColorConstant::known_color c) {
       basic_color temp = basic_color::create_from_value<bgra32_traits>(static_cast<bgra32_traits::pixel_type>(c));
       std::swap(*this, temp);
     }
