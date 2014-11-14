@@ -73,4 +73,4 @@ namespace colors {
     };
 
   } // namespace wpf
-/**/} // namespace colors
+} // namespace colors

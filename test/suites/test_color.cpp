@@ -10,10 +10,22 @@ using namespace std;
 using namespace colors;
 
 
-TEST(ColorFloat, CanBeCreatedFromConstant) {
+TEST(ColorFloat, CanBeCreatedFromWpfConstant) {
   colorF c1 = wpf_color_constant::brown;
   ASSERT_EQ(0xFFA52A2A, c1.value());
 }
+
+
+TEST(ColorInt, CanBeCreatedFromDotNetConstant) {
+  color c2 = dotnet_color_constant::brown;
+  ASSERT_EQ(0xFFA52A2A, c2.value());
+}
+
+TEST(ColorInt, CanBeCreatedFromX11Constant) {
+  color c2 = x11_color_constant::brown;
+  ASSERT_EQ(0xFFA52A2A, c2.value());
+}
+
 
 TEST(ColorInt, CanBeCreatedFromConstant) {
   color c2 = wpf_color_constant::brown;

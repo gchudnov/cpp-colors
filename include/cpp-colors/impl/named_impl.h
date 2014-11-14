@@ -12,4 +12,7 @@ namespace colors {
   typedef wpf::basic_named_color<char> wpf_named_color;
   typedef wpf::basic_color_mapper<char> wpf_color_mapper;
 
+  typedef x11::basic_named_color<char> x11_named_color;
+  typedef x11::basic_color_mapper<char> x11_color_mapper;
+
 } // namespace colors

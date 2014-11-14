@@ -8,6 +8,7 @@ namespace colors {
 
   typedef dotnet::basic_colors<color> dotnet_colors;
   typedef wpf::basic_colors<color> wpf_colors;
+  typedef x11::basic_colors<color> x11_colors;
 
 //  template <typename ColorType>
 //  struct basic_colors {
