@@ -1,5 +1,13 @@
 #pragma once
 
+#include <string>
+#include <map>
+#include <cstdint>
+#include <stdexcept>
+#include <boost/algorithm/string/case_conv.hpp>
+#include <boost/noncopyable.hpp>
+#include "x11_constants.h"
+
 namespace colors {
   namespace x11 {
 
@@ -239,258 +247,1223 @@ namespace colors {
       static const char* const spring_green() {
         return "SpringGreen";
       }
-//
-//      static const char* const XXX() {
-//        return "XXX";
-//      }
-//
-//      static const char* const XXX() {
-//        return "XXX";
-//      }
 
-//MediumSpringGreen	00 FA 9A	  0 250 154
-//LightGreen	90 EE 90	144 238 144
-//PaleGreen	98 FB 98	152 251 152
-//DarkSeaGreen	8F BC 8F	143 188 143
-//MediumSeaGreen	3C B3 71	 60 179 113
-//SeaGreen	2E 8B 57	 46 139  87
-//ForestGreen	22 8B 22	 34 139  34
-//Green	00 80 00	  0 128   0
-//DarkGreen	00 64 00	  0 100   0
-//Cyan colors
-//MediumAquamarine	66 CD AA	102 205 170
-//Aqua	00 FF FF	  0 255 255
-//Cyan	00 FF FF	  0 255 255
-//LightCyan	E0 FF FF	224 255 255
-//PaleTurquoise	AF EE EE	175 238 238
-//Aquamarine	7F FF D4	127 255 212
-//Turquoise	40 E0 D0	 64 224 208
-//MediumTurquoise	48 D1 CC	 72 209 204
-//DarkTurquoise	00 CE D1	  0 206 209
-//LightSeaGreen	20 B2 AA	 32 178 170
-//CadetBlue	5F 9E A0	 95 158 160
-//DarkCyan	00 8B 8B	  0 139 139
-//Teal	00 80 80	  0 128 128
-//Blue colors
-//LightSteelBlue	B0 C4 DE	176 196 222
-//PowderBlue	B0 E0 E6	176 224 230
-//LightBlue	AD D8 E6	173 216 230
-//SkyBlue	87 CE EB	135 206 235
-//LightSkyBlue	87 CE FA	135 206 250
-//DeepSkyBlue	00 BF FF	  0 191 255
-//DodgerBlue	1E 90 FF	 30 144 255
-//CornflowerBlue	64 95 ED	100 149 237
-//SteelBlue	46 82 B4	 70 130 180
-//RoyalBlue	41 69 E1	 65 105 225
-//Blue	00 00 FF	  0   0 255
-//MediumBlue	00 00 CD	  0   0 205
-//DarkBlue	00 00 8B	  0   0 139
-//Navy	00 00 80	  0   0 128
-//MidnightBlue	19 19 70	 25  25 112
-//
-//Purple colors
-//Lavender	E6 E6 FA	230 230 250
-//Thistle	D8 BF D8	216 191 216
-//Plum	DD A0 DD	221 160 221
-//Violet	EE 82 EE	238 130 238
-//Orchid	DA 70 D6	218 112 214
-//Fuchsia	FF 00 FF	255   0 255
-//Magenta	FF 00 FF	255   0 255
-//MediumOrchid	BA 55 D3	186  85 211
-//MediumPurple	93 70 DB	147 112 219
-//BlueViolet	8A 2B E2	138  43 226
-//DarkViolet	94 00 D3	148   0 211
-//DarkOrchid	99 32 CC	153  50 204
-//DarkMagenta	8B 00 8B	139   0 139
-//Purple	80 00 80	128   0 128
-//Indigo	4B 00 82	 75   0 130
-//DarkSlateBlue	48 3D 8B	 72  61 139
-//SlateBlue	6A 5A CD	106  90 205
-//MediumSlateBlue	7B 68 EE	123 104 238
-//White colors
-//White	FF FF FF	255 255 255
-//Snow	FF FA FA	255 250 250
-//Honeydew	F0 FF F0	240 255 240
-//MintCream	F5 FF FA	245 255 250
-//Azure	F0 FF FF	240 255 255
-//AliceBlue	F0 F8 FF	240 248 255
-//GhostWhite	F8 F8 FF	248 248 255
-//WhiteSmoke	F5 F5 F5	245 245 245
-//Seashell	FF F5 EE	255 245 238
-//Beige	F5 F5 DC	245 245 220
-//OldLace	FD F5 E6	253 245 230
-//FloralWhite	FF FA F0	255 250 240
-//Ivory	FF FF F0	255 255 240
-//AntiqueWhite	FA EB D7	250 235 215
-//Linen	FA F0 E6	250 240 230
-//LavenderBlush	FF F0 F5	255 240 245
-//MistyRose	FF E4 E1	255 228 225
-//Gray/Black colors
-//Gainsboro	DC DC DC	220 220 220
-//LightGrey	D3 D3 D3	211 211 211
-//Silver	C0 C0 C0	192 192 192
-//DarkGray	A9 A9 A9	169 169 169
-//Gray	80 80 80	128 128 128
-//DimGray	69 69 69	105 105 105
-//LightSlateGray	77 88 99	119 136 153
-//SlateGray	70 80 90	112 128 144
-//DarkSlateGray	2F 4F 4F	 47  79  79
-//Black	00 00 00	  0   0   0
+      static const char* const medium_spring_green() {
+        return "MediumSpringGreen";
+      }
+
+      static const char* const light_green() {
+        return "LightGreen";
+      }
+
+      static const char* const pale_green() {
+        return "PaleGreen";
+      }
+
+      static const char* const dark_sea_green() {
+        return "DarkSeaGreen";
+      }
+
+      static const char* const medium_sea_green() {
+        return "MediumSeaGreen";
+      }
+
+      static const char* const sea_green() {
+        return "SeaGreen";
+      }
+
+      static const char* const forest_green() {
+        return "ForestGreen";
+      }
+
+      static const char* const green() {
+        return "Green";
+      }
+
+      static const char* const dark_green() {
+        return "DarkGreen";
+      }
+
+      static const char* const medium_aquamarine() {
+        return "MediumAquamarine";
+      }
+
+      static const char* const aqua() {
+        return "Aqua";
+      }
+
+      static const char* const cyan() {
+        return "Cyan";
+      }
+
+      static const char* const light_cyan() {
+        return "LightCyan";
+      }
+
+      static const char* const pale_turquoise() {
+        return "PaleTurquoise";
+      }
+
+      static const char* const aquamarine() {
+        return "Aquamarine";
+      }
+
+      static const char* const turquoise() {
+        return "Turquoise";
+      }
+
+      static const char* const medium_turquoise() {
+        return "MediumTurquoise";
+      }
+
+      static const char* const dark_turquoise() {
+        return "DarkTurquoise";
+      }
+
+      static const char* const light_sea_green() {
+        return "LightSeaGreen";
+      }
+
+      static const char* const cadet_blue() {
+        return "CadetBlue";
+      }
+
+      static const char* const dark_cyan() {
+        return "DarkCyan";
+      }
+
+      static const char* const teal() {
+        return "Teal";
+      }
+
+      static const char* const light_steel_blue() {
+        return "LightSteelBlue";
+      }
+
+      static const char* const powder_blue() {
+        return "PowderBlue";
+      }
+
+      static const char* const light_blue() {
+        return "LightBlue";
+      }
+
+      static const char* const sky_blue() {
+        return "SkyBlue";
+      }
+
+      static const char* const light_sky_blue() {
+        return "LightSkyBlue";
+      }
+
+      static const char* const deep_sky_blue() {
+        return "DeepSkyBlue";
+      }
+
+      static const char* const dodger_blue() {
+        return "DodgerBlue";
+      }
+
+      static const char* const cornflower_blue() {
+        return "CornflowerBlue";
+      }
+
+      static const char* const steel_blue() {
+        return "SteelBlue";
+      }
+
+      static const char* const royal_blue() {
+        return "RoyalBlue";
+      }
+
+      static const char* const blue() {
+        return "Blue";
+      }
+
+      static const char* const medium_blue() {
+        return "MediumBlue";
+      }
+
+      static const char* const DarkBlue() {
+        return "DarkBlue";
+      }
+
+      static const char* const Navy() {
+        return "Navy";
+      }
+
+      static const char* const MidnightBlue() {
+        return "MidnightBlue";
+      }
+
+      static const char* const Lavender() {
+        return "Lavender";
+      }
+
+      static const char* const Thistle() {
+        return "Thistle";
+      }
+
+      static const char* const Plum() {
+        return "Plum";
+      }
+
+      static const char* const Violet() {
+        return "Violet";
+      }
+
+      static const char* const Orchid() {
+        return "Orchid";
+      }
+
+      static const char* const Fuchsia() {
+        return "Fuchsia";
+      }
+
+      static const char* const Magenta() {
+        return "Magenta";
+      }
+
+      static const char* const MediumOrchid() {
+        return "MediumOrchid";
+      }
+
+      static const char* const MediumPurple() {
+        return "MediumPurple";
+      }
+
+      static const char* const BlueViolet() {
+        return "BlueViolet";
+      }
+
+      static const char* const DarkViolet() {
+        return "DarkViolet";
+      }
+
+      static const char* const DarkOrchid() {
+        return "DarkOrchid";
+      }
+
+      static const char* const DarkMagenta() {
+        return "DarkMagenta";
+      }
+
+      static const char* const Purple() {
+        return "Purple";
+      }
+
+      static const char* const Indigo() {
+        return "Indigo";
+      }
+
+      static const char* const DarkSlateBlue() {
+        return "DarkSlateBlue";
+      }
+
+      static const char* const SlateBlue() {
+        return "SlateBlue";
+      }
+
+      static const char* const MediumSlateBlue() {
+        return "MediumSlateBlue";
+      }
+
+      static const char* const White() {
+        return "White";
+      }
+
+      static const char* const Snow() {
+        return "Snow";
+      }
+
+      static const char* const Honeydew() {
+        return "Honeydew";
+      }
+
+      static const char* const MintCream() {
+        return "MintCream";
+      }
+
+      static const char* const Azure() {
+        return "Azure";
+      }
+
+      static const char* const AliceBlue() {
+        return "AliceBlue";
+      }
+
+      static const char* const GhostWhite() {
+        return "GhostWhite";
+      }
+
+      static const char* const WhiteSmoke() {
+        return "WhiteSmoke";
+      }
+
+      static const char* const Seashell() {
+        return "Seashell";
+      }
+
+      static const char* const Beige() {
+        return "Beige";
+      }
+
+      static const char* const OldLace() {
+        return "OldLace";
+      }
+
+      static const char* const FloralWhite() {
+        return "FloralWhite";
+      }
+
+      static const char* const Ivory() {
+        return "Ivory";
+      }
+
+      static const char* const AntiqueWhite() {
+        return "AntiqueWhite";
+      }
+
+      static const char* const Linen() {
+        return "Linen";
+      }
+
+      static const char* const LavenderBlush() {
+        return "LavenderBlush";
+      }
+
+      static const char* const MistyRose() {
+        return "MistyRose";
+      }
+
+      static const char* const Gainsboro() {
+        return "Gainsboro";
+      }
+
+      static const char* const LightGrey() {
+        return "LightGrey";
+      }
+
+      static const char* const Silver() {
+        return "Silver";
+      }
+
+      static const char* const DarkGray() {
+        return "DarkGray";
+      }
+
+      static const char* const Gray() {
+        return "Gray";
+      }
+
+      static const char* const DimGray() {
+        return "DimGray";
+      }
+
+      static const char* const LightSlateGray() {
+        return "LightSlateGray";
+      }
+
+      static const char* const SlateGray() {
+        return "SlateGray";
+      }
+
+      static const char* const DarkSlateGray() {
+        return "DarkSlateGray";
+      }
+
+      static const char* const Black() {
+        return "Black";
+      }
+
+    };
+
+    template<>
+    struct basic_named_color<wchar_t> {
+      static const wchar_t* const pink() {
+        return L"Pink";
+      }
+
+      static const wchar_t* const light_pink() {
+        return L"LightPink";
+      }
+
+      static const wchar_t* const hot_pink() {
+        return L"HotPink";
+      }
+
+      static const wchar_t* const deep_pink() {
+        return L"DeepPink";
+      }
+
+      static const wchar_t* const pale_violet_red() {
+        return L"PaleVioletRed";
+      }
+
+      static const wchar_t* const medium_violet_red() {
+        return L"MediumVioletRed";
+      }
+
+      static const wchar_t* const light_salmon() {
+        return L"LightSalmon";
+      }
+
+      static const wchar_t* const salmon() {
+        return L"Salmon";
+      }
+
+      static const wchar_t* const dark_salmon() {
+        return L"DarkSalmon";
+      }
+
+      static const wchar_t* const light_coral() {
+        return L"LightCoral";
+      }
+
+      static const wchar_t* const indian_red() {
+        return L"IndianRed";
+      }
+
+      static const wchar_t* const crimson() {
+        return L"Crimson";
+      }
+
+      static const wchar_t* const fire_brick() {
+        return L"FireBrick";
+      }
+
+      static const wchar_t* const dark_red() {
+        return L"DarkRed";
+      }
+
+      static const wchar_t* const red() {
+        return L"Red";
+      }
+
+      static const wchar_t* const orange_red() {
+        return L"OrangeRed";
+      }
+
+      static const wchar_t* const tomato() {
+        return L"Tomato";
+      }
+
+      static const wchar_t* const coral() {
+        return L"Coral";
+      }
+
+      static const wchar_t* const dark_orange() {
+        return L"DarkOrange";
+      }
+
+      static const wchar_t* const orange() {
+        return L"Orange";
+      }
+
+      static const wchar_t* const yellow() {
+        return L"Yellow";
+      }
+
+      static const wchar_t* const light_yellow() {
+        return L"LightYellow";
+      }
+
+      static const wchar_t* const lemon_chiffon() {
+        return L"LemonChiffon";
+      }
+
+      static const wchar_t* const light_goldenrod_yellow() {
+        return L"LightGoldenrodYellow";
+      }
+
+      static const wchar_t* const papaya_whip() {
+        return L"PapayaWhip";
+      }
+
+      static const wchar_t* const moccasin() {
+        return L"Moccasin";
+      }
+
+      static const wchar_t* const peach_puff() {
+        return L"PeachPuff";
+      }
+
+      static const wchar_t* const pale_goldenrod() {
+        return L"PaleGoldenrod";
+      }
+
+      static const wchar_t* const khaki() {
+        return L"Khaki";
+      }
+
+      static const wchar_t* const dark_khaki() {
+        return L"DarkKhaki";
+      }
+
+      static const wchar_t* const gold() {
+        return L"Gold";
+      }
+
+      static const wchar_t* const cornsilk() {
+        return L"Cornsilk";
+      }
+
+      static const wchar_t* const blanched_almond() {
+        return L"BlanchedAlmond";
+      }
+
+      static const wchar_t* const bisque() {
+        return L"Bisque";
+      }
+
+      static const wchar_t* const navajo_white() {
+        return L"NavajoWhite";
+      }
+
+      static const wchar_t* const wheat() {
+        return L"Wheat";
+      }
+
+      static const wchar_t* const burly_wood() {
+        return L"BurlyWood";
+      }
+
+      static const wchar_t* const tan() {
+        return L"Tan";
+      }
+
+      static const wchar_t* const rosy_brown() {
+        return L"RosyBrown";
+      }
+
+      static const wchar_t* const sandy_brown() {
+        return L"SandyBrown";
+      }
+
+      static const wchar_t* const goldenrod() {
+        return L"Goldenrod";
+      }
+
+      static const wchar_t* const dark_goldenrod() {
+        return L"DarkGoldenrod";
+      }
+
+      static const wchar_t* const peru() {
+        return L"Peru";
+      }
+
+      static const wchar_t* const chocolate() {
+        return L"Chocolate";
+      }
+
+      static const wchar_t* const saddle_brown() {
+        return L"SaddleBrown";
+      }
+
+      static const wchar_t* const sienna() {
+        return L"Sienna";
+      }
+
+      static const wchar_t* const brown() {
+        return L"Brown";
+      }
+
+      static const wchar_t* const maroon() {
+        return L"Maroon";
+      }
+
+      static const wchar_t* const dark_olive_green() {
+        return L"DarkOliveGreen";
+      }
+
+      static const wchar_t* const olive() {
+        return L"Olive";
+      }
+
+      static const wchar_t* const olive_drab() {
+        return L"OliveDrab";
+      }
+
+      static const wchar_t* const yellow_green() {
+        return L"YellowGreen";
+      }
+
+      static const wchar_t* const lime_green() {
+        return L"LimeGreen";
+      }
+
+      static const wchar_t* const lime() {
+        return L"Lime";
+      }
+
+      static const wchar_t* const lawn_green() {
+        return L"LawnGreen";
+      }
+
+      static const wchar_t* const chartreuse() {
+        return L"Chartreuse";
+      }
+
+      static const wchar_t* const green_yellow() {
+        return L"GreenYellow";
+      }
+
+      static const wchar_t* const spring_green() {
+        return L"SpringGreen";
+      }
+
+      static const wchar_t* const medium_spring_green() {
+        return L"MediumSpringGreen";
+      }
+
+      static const wchar_t* const light_green() {
+        return L"LightGreen";
+      }
+
+      static const wchar_t* const pale_green() {
+        return L"PaleGreen";
+      }
+
+      static const wchar_t* const dark_sea_green() {
+        return L"DarkSeaGreen";
+      }
+
+      static const wchar_t* const medium_sea_green() {
+        return L"MediumSeaGreen";
+      }
+
+      static const wchar_t* const sea_green() {
+        return L"SeaGreen";
+      }
+
+      static const wchar_t* const forest_green() {
+        return L"ForestGreen";
+      }
+
+      static const wchar_t* const green() {
+        return L"Green";
+      }
+
+      static const wchar_t* const dark_green() {
+        return L"DarkGreen";
+      }
+
+      static const wchar_t* const medium_aquamarine() {
+        return L"MediumAquamarine";
+      }
+
+      static const wchar_t* const aqua() {
+        return L"Aqua";
+      }
+
+      static const wchar_t* const cyan() {
+        return L"Cyan";
+      }
+
+      static const wchar_t* const light_cyan() {
+        return L"LightCyan";
+      }
+
+      static const wchar_t* const pale_turquoise() {
+        return L"PaleTurquoise";
+      }
+
+      static const wchar_t* const aquamarine() {
+        return L"Aquamarine";
+      }
+
+      static const wchar_t* const turquoise() {
+        return L"Turquoise";
+      }
+
+      static const wchar_t* const medium_turquoise() {
+        return L"MediumTurquoise";
+      }
+
+      static const wchar_t* const dark_turquoise() {
+        return L"DarkTurquoise";
+      }
+
+      static const wchar_t* const light_sea_green() {
+        return L"LightSeaGreen";
+      }
+
+      static const wchar_t* const cadet_blue() {
+        return L"CadetBlue";
+      }
+
+      static const wchar_t* const dark_cyan() {
+        return L"DarkCyan";
+      }
+
+      static const wchar_t* const teal() {
+        return L"Teal";
+      }
+
+      static const wchar_t* const light_steel_blue() {
+        return L"LightSteelBlue";
+      }
+
+      static const wchar_t* const powder_blue() {
+        return L"PowderBlue";
+      }
+
+      static const wchar_t* const light_blue() {
+        return L"LightBlue";
+      }
+
+      static const wchar_t* const sky_blue() {
+        return L"SkyBlue";
+      }
+
+      static const wchar_t* const light_sky_blue() {
+        return L"LightSkyBlue";
+      }
+
+      static const wchar_t* const deep_sky_blue() {
+        return L"DeepSkyBlue";
+      }
+
+      static const wchar_t* const dodger_blue() {
+        return L"DodgerBlue";
+      }
+
+      static const wchar_t* const cornflower_blue() {
+        return L"CornflowerBlue";
+      }
+
+      static const wchar_t* const steel_blue() {
+        return L"SteelBlue";
+      }
+
+      static const wchar_t* const royal_blue() {
+        return L"RoyalBlue";
+      }
+
+      static const wchar_t* const blue() {
+        return L"Blue";
+      }
+
+      static const wchar_t* const medium_blue() {
+        return L"MediumBlue";
+      }
+
+      static const wchar_t* const DarkBlue() {
+        return L"DarkBlue";
+      }
+
+      static const wchar_t* const Navy() {
+        return L"Navy";
+      }
+
+      static const wchar_t* const MidnightBlue() {
+        return L"MidnightBlue";
+      }
+
+      static const wchar_t* const Lavender() {
+        return L"Lavender";
+      }
+
+      static const wchar_t* const Thistle() {
+        return L"Thistle";
+      }
+
+      static const wchar_t* const Plum() {
+        return L"Plum";
+      }
+
+      static const wchar_t* const Violet() {
+        return L"Violet";
+      }
+
+      static const wchar_t* const Orchid() {
+        return L"Orchid";
+      }
+
+      static const wchar_t* const Fuchsia() {
+        return L"Fuchsia";
+      }
+
+      static const wchar_t* const Magenta() {
+        return L"Magenta";
+      }
+
+      static const wchar_t* const MediumOrchid() {
+        return L"MediumOrchid";
+      }
+
+      static const wchar_t* const MediumPurple() {
+        return L"MediumPurple";
+      }
+
+      static const wchar_t* const BlueViolet() {
+        return L"BlueViolet";
+      }
+
+      static const wchar_t* const DarkViolet() {
+        return L"DarkViolet";
+      }
+
+      static const wchar_t* const DarkOrchid() {
+        return L"DarkOrchid";
+      }
+
+      static const wchar_t* const DarkMagenta() {
+        return L"DarkMagenta";
+      }
+
+      static const wchar_t* const Purple() {
+        return L"Purple";
+      }
+
+      static const wchar_t* const Indigo() {
+        return L"Indigo";
+      }
+
+      static const wchar_t* const DarkSlateBlue() {
+        return L"DarkSlateBlue";
+      }
+
+      static const wchar_t* const SlateBlue() {
+        return L"SlateBlue";
+      }
+
+      static const wchar_t* const MediumSlateBlue() {
+        return L"MediumSlateBlue";
+      }
+
+      static const wchar_t* const White() {
+        return L"White";
+      }
+
+      static const wchar_t* const Snow() {
+        return L"Snow";
+      }
+
+      static const wchar_t* const Honeydew() {
+        return L"Honeydew";
+      }
+
+      static const wchar_t* const MintCream() {
+        return L"MintCream";
+      }
+
+      static const wchar_t* const Azure() {
+        return L"Azure";
+      }
+
+      static const wchar_t* const AliceBlue() {
+        return L"AliceBlue";
+      }
+
+      static const wchar_t* const GhostWhite() {
+        return L"GhostWhite";
+      }
+
+      static const wchar_t* const WhiteSmoke() {
+        return L"WhiteSmoke";
+      }
+
+      static const wchar_t* const Seashell() {
+        return L"Seashell";
+      }
+
+      static const wchar_t* const Beige() {
+        return L"Beige";
+      }
+
+      static const wchar_t* const OldLace() {
+        return L"OldLace";
+      }
+
+      static const wchar_t* const FloralWhite() {
+        return L"FloralWhite";
+      }
+
+      static const wchar_t* const Ivory() {
+        return L"Ivory";
+      }
+
+      static const wchar_t* const AntiqueWhite() {
+        return L"AntiqueWhite";
+      }
+
+      static const wchar_t* const Linen() {
+        return L"Linen";
+      }
+
+      static const wchar_t* const LavenderBlush() {
+        return L"LavenderBlush";
+      }
+
+      static const wchar_t* const MistyRose() {
+        return L"MistyRose";
+      }
+
+      static const wchar_t* const Gainsboro() {
+        return L"Gainsboro";
+      }
+
+      static const wchar_t* const LightGrey() {
+        return L"LightGrey";
+      }
+
+      static const wchar_t* const Silver() {
+        return L"Silver";
+      }
+
+      static const wchar_t* const DarkGray() {
+        return L"DarkGray";
+      }
+
+      static const wchar_t* const Gray() {
+        return L"Gray";
+      }
+
+      static const wchar_t* const DimGray() {
+        return L"DimGray";
+      }
+
+      static const wchar_t* const LightSlateGray() {
+        return L"LightSlateGray";
+      }
+
+      static const wchar_t* const SlateGray() {
+        return L"SlateGray";
+      }
+
+      static const wchar_t* const DarkSlateGray() {
+        return L"DarkSlateGray";
+      }
+
+      static const wchar_t* const Black() {
+        return L"Black";
+      }
+
+    };
+
+    //
+    template<typename CharT>
+    struct basic_color_mapper
+      : private boost::noncopyable {
+      typedef CharT char_type;
+      typedef std::basic_string<char_type> string_type;
+      typedef basic_named_color<char_type> named_colors_traits;
+
+      typedef std::map<string_type, color_constant::known_color> string_color_map;
+      typedef std::map<uint32_t, string_type> color_string_map;
+
+      // Build a name -> constant map
+      static const string_color_map &get_string_to_color_map() {
+        static string_color_map sm_;   // name -> value
+        if (sm_.empty()) {
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::pink()), color_constant::pink));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_pink()), color_constant::light_pink));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::hot_pink()), color_constant::hot_pink));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::deep_pink()), color_constant::deep_pink));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::pale_violet_red()), color_constant::pale_violet_red));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_violet_red()), color_constant::medium_violet_red));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_salmon()), color_constant::light_salmon));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::salmon()), color_constant::salmon));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_salmon()), color_constant::dark_salmon));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_coral()), color_constant::light_coral));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::indian_red()), color_constant::indian_red));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::crimson()), color_constant::crimson));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::fire_brick()), color_constant::fire_brick));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_red()), color_constant::dark_red));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::red()), color_constant::red));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::orange_red()), color_constant::orange_red));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::tomato()), color_constant::tomato));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::coral()), color_constant::coral));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_orange()), color_constant::dark_orange));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::orange()), color_constant::orange));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::yellow()), color_constant::yellow));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_yellow()), color_constant::light_yellow));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::lemon_chiffon()), color_constant::lemon_chiffon));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_goldenrod_yellow()), color_constant::light_goldenrod_yellow));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::papaya_whip()), color_constant::papaya_whip));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::moccasin()), color_constant::moccasin));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::peach_puff()), color_constant::peach_puff));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::pale_goldenrod()), color_constant::pale_goldenrod));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::khaki()), color_constant::khaki));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_khaki()), color_constant::dark_khaki));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::gold()), color_constant::gold));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::cornsilk()), color_constant::cornsilk));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::blanched_almond()), color_constant::blanched_almond));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::bisque()), color_constant::bisque));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::navajo_white()), color_constant::navajo_white));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::wheat()), color_constant::wheat));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::burly_wood()), color_constant::burly_wood));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::tan()), color_constant::tan));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::rosy_brown()), color_constant::rosy_brown));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::sandy_brown()), color_constant::sandy_brown));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::goldenrod()), color_constant::goldenrod));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_goldenrod()), color_constant::dark_goldenrod));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::peru()), color_constant::peru));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::chocolate()), color_constant::chocolate));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::saddle_brown()), color_constant::saddle_brown));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::sienna()), color_constant::sienna));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::brown()), color_constant::brown));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::maroon()), color_constant::maroon));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_olive_green()), color_constant::dark_olive_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::olive()), color_constant::olive));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::olive_drab()), color_constant::olive_drab));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::yellow_green()), color_constant::yellow_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::lime_green()), color_constant::lime_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::lime()), color_constant::lime));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::lawn_green()), color_constant::lawn_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::chartreuse()), color_constant::chartreuse));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::green_yellow()), color_constant::green_yellow));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::spring_green()), color_constant::spring_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_spring_green()), color_constant::medium_spring_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_green()), color_constant::light_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::pale_green()), color_constant::pale_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_sea_green()), color_constant::dark_sea_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_sea_green()), color_constant::medium_sea_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::sea_green()), color_constant::sea_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::forest_green()), color_constant::forest_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::green()), color_constant::green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_green()), color_constant::dark_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_aquamarine()), color_constant::medium_aquamarine));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::aqua()), color_constant::aqua));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::cyan()), color_constant::cyan));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_cyan()), color_constant::light_cyan));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::pale_turquoise()), color_constant::pale_turquoise));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::aquamarine()), color_constant::aquamarine));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::turquoise()), color_constant::turquoise));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_turquoise()), color_constant::medium_turquoise));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_turquoise()), color_constant::dark_turquoise));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_sea_green()), color_constant::light_sea_green));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::cadet_blue()), color_constant::cadet_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_cyan()), color_constant::dark_cyan));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::teal()), color_constant::teal));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_steel_blue()), color_constant::light_steel_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::powder_blue()), color_constant::powder_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_blue()), color_constant::light_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::sky_blue()), color_constant::sky_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_sky_blue()), color_constant::light_sky_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::deep_sky_blue()), color_constant::deep_sky_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dodger_blue()), color_constant::dodger_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::cornflower_blue()), color_constant::cornflower_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::steel_blue()), color_constant::steel_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::royal_blue()), color_constant::royal_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::blue()), color_constant::blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_blue()), color_constant::medium_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_blue()), color_constant::dark_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::navy()), color_constant::navy));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::midnight_blue()), color_constant::midnight_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::lavender()), color_constant::lavender));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::thistle()), color_constant::thistle));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::plum()), color_constant::plum));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::violet()), color_constant::violet));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::orchid()), color_constant::orchid));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::fuchsia()), color_constant::fuchsia));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::magenta()), color_constant::magenta));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_orchid()), color_constant::medium_orchid));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_purple()), color_constant::medium_purple));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::blue_violet()), color_constant::blue_violet));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_violet()), color_constant::dark_violet));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_orchid()), color_constant::dark_orchid));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_magenta()), color_constant::dark_magenta));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::purple()), color_constant::purple));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::indigo()), color_constant::indigo));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_slate_blue()), color_constant::dark_slate_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::slate_blue()), color_constant::slate_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::medium_slate_blue()), color_constant::medium_slate_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::white()), color_constant::white));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::snow()), color_constant::snow));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::honeydew()), color_constant::honeydew));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::mint_cream()), color_constant::mint_cream));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::azure()), color_constant::azure));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::alice_blue()), color_constant::alice_blue));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::ghost_white()), color_constant::ghost_white));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::white_smoke()), color_constant::white_smoke));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::seashell()), color_constant::seashell));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::beige()), color_constant::beige));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::old_lace()), color_constant::old_lace));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::floral_white()), color_constant::floral_white));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::ivory()), color_constant::ivory));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::antique_white()), color_constant::antique_white));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::linen()), color_constant::linen));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::lavender_blush()), color_constant::lavender_blush));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::misty_rose()), color_constant::misty_rose));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::gainsboro()), color_constant::gainsboro));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_grey()), color_constant::light_grey));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::silver()), color_constant::silver));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_gray()), color_constant::dark_gray));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::gray()), color_constant::gray));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dim_gray()), color_constant::dim_gray));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_slate_gray()), color_constant::light_slate_gray));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::slate_gray()), color_constant::slate_gray));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_slate_gray()), color_constant::dark_slate_gray));
+          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::black()), color_constant::black));
+        }
+
+        return sm_;
+      }
+
+      // Build a name -> constant map
+      static const color_string_map &get_color_to_string_map() {
+        static color_string_map vm_;   // value -> name
+
+        if (vm_.empty()) {
+          vm_.insert(std::make_pair(color_constant::pink, named_colors_traits::pink()));
+          vm_.insert(std::make_pair(color_constant::light_pink, named_colors_traits::light_pink()));
+          vm_.insert(std::make_pair(color_constant::hot_pink, named_colors_traits::hot_pink()));
+          vm_.insert(std::make_pair(color_constant::deep_pink, named_colors_traits::deep_pink()));
+          vm_.insert(std::make_pair(color_constant::pale_violet_red, named_colors_traits::pale_violet_red()));
+          vm_.insert(std::make_pair(color_constant::medium_violet_red, named_colors_traits::medium_violet_red()));
+          vm_.insert(std::make_pair(color_constant::light_salmon, named_colors_traits::light_salmon()));
+          vm_.insert(std::make_pair(color_constant::salmon, named_colors_traits::salmon()));
+          vm_.insert(std::make_pair(color_constant::dark_salmon, named_colors_traits::dark_salmon()));
+          vm_.insert(std::make_pair(color_constant::light_coral, named_colors_traits::light_coral()));
+          vm_.insert(std::make_pair(color_constant::indian_red, named_colors_traits::indian_red()));
+          vm_.insert(std::make_pair(color_constant::crimson, named_colors_traits::crimson()));
+          vm_.insert(std::make_pair(color_constant::fire_brick, named_colors_traits::fire_brick()));
+          vm_.insert(std::make_pair(color_constant::dark_red, named_colors_traits::dark_red()));
+          vm_.insert(std::make_pair(color_constant::red, named_colors_traits::red()));
+          vm_.insert(std::make_pair(color_constant::orange_red, named_colors_traits::orange_red()));
+          vm_.insert(std::make_pair(color_constant::tomato, named_colors_traits::tomato()));
+          vm_.insert(std::make_pair(color_constant::coral, named_colors_traits::coral()));
+          vm_.insert(std::make_pair(color_constant::dark_orange, named_colors_traits::dark_orange()));
+          vm_.insert(std::make_pair(color_constant::orange, named_colors_traits::orange()));
+          vm_.insert(std::make_pair(color_constant::yellow, named_colors_traits::yellow()));
+          vm_.insert(std::make_pair(color_constant::light_yellow, named_colors_traits::light_yellow()));
+          vm_.insert(std::make_pair(color_constant::lemon_chiffon, named_colors_traits::lemon_chiffon()));
+          vm_.insert(std::make_pair(color_constant::light_goldenrod_yellow, named_colors_traits::light_goldenrod_yellow()));
+          vm_.insert(std::make_pair(color_constant::papaya_whip, named_colors_traits::papaya_whip()));
+          vm_.insert(std::make_pair(color_constant::moccasin, named_colors_traits::moccasin()));
+          vm_.insert(std::make_pair(color_constant::peach_puff, named_colors_traits::peach_puff()));
+          vm_.insert(std::make_pair(color_constant::pale_goldenrod, named_colors_traits::pale_goldenrod()));
+          vm_.insert(std::make_pair(color_constant::khaki, named_colors_traits::khaki()));
+          vm_.insert(std::make_pair(color_constant::dark_khaki, named_colors_traits::dark_khaki()));
+          vm_.insert(std::make_pair(color_constant::gold, named_colors_traits::gold()));
+          vm_.insert(std::make_pair(color_constant::cornsilk, named_colors_traits::cornsilk()));
+          vm_.insert(std::make_pair(color_constant::blanched_almond, named_colors_traits::blanched_almond()));
+          vm_.insert(std::make_pair(color_constant::bisque, named_colors_traits::bisque()));
+          vm_.insert(std::make_pair(color_constant::navajo_white, named_colors_traits::navajo_white()));
+          vm_.insert(std::make_pair(color_constant::wheat, named_colors_traits::wheat()));
+          vm_.insert(std::make_pair(color_constant::burly_wood, named_colors_traits::burly_wood()));
+          vm_.insert(std::make_pair(color_constant::tan, named_colors_traits::tan()));
+          vm_.insert(std::make_pair(color_constant::rosy_brown, named_colors_traits::rosy_brown()));
+          vm_.insert(std::make_pair(color_constant::sandy_brown, named_colors_traits::sandy_brown()));
+          vm_.insert(std::make_pair(color_constant::goldenrod, named_colors_traits::goldenrod()));
+          vm_.insert(std::make_pair(color_constant::dark_goldenrod, named_colors_traits::dark_goldenrod()));
+          vm_.insert(std::make_pair(color_constant::peru, named_colors_traits::peru()));
+          vm_.insert(std::make_pair(color_constant::chocolate, named_colors_traits::chocolate()));
+          vm_.insert(std::make_pair(color_constant::saddle_brown, named_colors_traits::saddle_brown()));
+          vm_.insert(std::make_pair(color_constant::sienna, named_colors_traits::sienna()));
+          vm_.insert(std::make_pair(color_constant::brown, named_colors_traits::brown()));
+          vm_.insert(std::make_pair(color_constant::maroon, named_colors_traits::maroon()));
+          vm_.insert(std::make_pair(color_constant::dark_olive_green, named_colors_traits::dark_olive_green()));
+          vm_.insert(std::make_pair(color_constant::olive, named_colors_traits::olive()));
+          vm_.insert(std::make_pair(color_constant::olive_drab, named_colors_traits::olive_drab()));
+          vm_.insert(std::make_pair(color_constant::yellow_green, named_colors_traits::yellow_green()));
+          vm_.insert(std::make_pair(color_constant::lime_green, named_colors_traits::lime_green()));
+          vm_.insert(std::make_pair(color_constant::lime, named_colors_traits::lime()));
+          vm_.insert(std::make_pair(color_constant::lawn_green, named_colors_traits::lawn_green()));
+          vm_.insert(std::make_pair(color_constant::chartreuse, named_colors_traits::chartreuse()));
+          vm_.insert(std::make_pair(color_constant::green_yellow, named_colors_traits::green_yellow()));
+          vm_.insert(std::make_pair(color_constant::spring_green, named_colors_traits::spring_green()));
+          vm_.insert(std::make_pair(color_constant::medium_spring_green, named_colors_traits::medium_spring_green()));
+          vm_.insert(std::make_pair(color_constant::light_green, named_colors_traits::light_green()));
+          vm_.insert(std::make_pair(color_constant::pale_green, named_colors_traits::pale_green()));
+          vm_.insert(std::make_pair(color_constant::dark_sea_green, named_colors_traits::dark_sea_green()));
+          vm_.insert(std::make_pair(color_constant::medium_sea_green, named_colors_traits::medium_sea_green()));
+          vm_.insert(std::make_pair(color_constant::sea_green, named_colors_traits::sea_green()));
+          vm_.insert(std::make_pair(color_constant::forest_green, named_colors_traits::forest_green()));
+          vm_.insert(std::make_pair(color_constant::green, named_colors_traits::green()));
+          vm_.insert(std::make_pair(color_constant::dark_green, named_colors_traits::dark_green()));
+          vm_.insert(std::make_pair(color_constant::medium_aquamarine, named_colors_traits::medium_aquamarine()));
+          vm_.insert(std::make_pair(color_constant::aqua, named_colors_traits::aqua()));
+          vm_.insert(std::make_pair(color_constant::cyan, named_colors_traits::cyan()));
+          vm_.insert(std::make_pair(color_constant::light_cyan, named_colors_traits::light_cyan()));
+          vm_.insert(std::make_pair(color_constant::pale_turquoise, named_colors_traits::pale_turquoise()));
+          vm_.insert(std::make_pair(color_constant::aquamarine, named_colors_traits::aquamarine()));
+          vm_.insert(std::make_pair(color_constant::turquoise, named_colors_traits::turquoise()));
+          vm_.insert(std::make_pair(color_constant::medium_turquoise, named_colors_traits::medium_turquoise()));
+          vm_.insert(std::make_pair(color_constant::dark_turquoise, named_colors_traits::dark_turquoise()));
+          vm_.insert(std::make_pair(color_constant::light_sea_green, named_colors_traits::light_sea_green()));
+          vm_.insert(std::make_pair(color_constant::cadet_blue, named_colors_traits::cadet_blue()));
+          vm_.insert(std::make_pair(color_constant::dark_cyan, named_colors_traits::dark_cyan()));
+          vm_.insert(std::make_pair(color_constant::teal, named_colors_traits::teal()));
+          vm_.insert(std::make_pair(color_constant::light_steel_blue, named_colors_traits::light_steel_blue()));
+          vm_.insert(std::make_pair(color_constant::powder_blue, named_colors_traits::powder_blue()));
+          vm_.insert(std::make_pair(color_constant::light_blue, named_colors_traits::light_blue()));
+          vm_.insert(std::make_pair(color_constant::sky_blue, named_colors_traits::sky_blue()));
+          vm_.insert(std::make_pair(color_constant::light_sky_blue, named_colors_traits::light_sky_blue()));
+          vm_.insert(std::make_pair(color_constant::deep_sky_blue, named_colors_traits::deep_sky_blue()));
+          vm_.insert(std::make_pair(color_constant::dodger_blue, named_colors_traits::dodger_blue()));
+          vm_.insert(std::make_pair(color_constant::cornflower_blue, named_colors_traits::cornflower_blue()));
+          vm_.insert(std::make_pair(color_constant::steel_blue, named_colors_traits::steel_blue()));
+          vm_.insert(std::make_pair(color_constant::royal_blue, named_colors_traits::royal_blue()));
+          vm_.insert(std::make_pair(color_constant::blue, named_colors_traits::blue()));
+          vm_.insert(std::make_pair(color_constant::medium_blue, named_colors_traits::medium_blue()));
+          vm_.insert(std::make_pair(color_constant::dark_blue, named_colors_traits::dark_blue()));
+          vm_.insert(std::make_pair(color_constant::navy, named_colors_traits::navy()));
+          vm_.insert(std::make_pair(color_constant::midnight_blue, named_colors_traits::midnight_blue()));
+          vm_.insert(std::make_pair(color_constant::lavender, named_colors_traits::lavender()));
+          vm_.insert(std::make_pair(color_constant::thistle, named_colors_traits::thistle()));
+          vm_.insert(std::make_pair(color_constant::plum, named_colors_traits::plum()));
+          vm_.insert(std::make_pair(color_constant::violet, named_colors_traits::violet()));
+          vm_.insert(std::make_pair(color_constant::orchid, named_colors_traits::orchid()));
+          vm_.insert(std::make_pair(color_constant::fuchsia, named_colors_traits::fuchsia()));
+          vm_.insert(std::make_pair(color_constant::magenta, named_colors_traits::magenta()));
+          vm_.insert(std::make_pair(color_constant::medium_orchid, named_colors_traits::medium_orchid()));
+          vm_.insert(std::make_pair(color_constant::medium_purple, named_colors_traits::medium_purple()));
+          vm_.insert(std::make_pair(color_constant::blue_violet, named_colors_traits::blue_violet()));
+          vm_.insert(std::make_pair(color_constant::dark_violet, named_colors_traits::dark_violet()));
+          vm_.insert(std::make_pair(color_constant::dark_orchid, named_colors_traits::dark_orchid()));
+          vm_.insert(std::make_pair(color_constant::dark_magenta, named_colors_traits::dark_magenta()));
+          vm_.insert(std::make_pair(color_constant::purple, named_colors_traits::purple()));
+          vm_.insert(std::make_pair(color_constant::indigo, named_colors_traits::indigo()));
+          vm_.insert(std::make_pair(color_constant::dark_slate_blue, named_colors_traits::dark_slate_blue()));
+          vm_.insert(std::make_pair(color_constant::slate_blue, named_colors_traits::slate_blue()));
+          vm_.insert(std::make_pair(color_constant::medium_slate_blue, named_colors_traits::medium_slate_blue()));
+          vm_.insert(std::make_pair(color_constant::white, named_colors_traits::white()));
+          vm_.insert(std::make_pair(color_constant::snow, named_colors_traits::snow()));
+          vm_.insert(std::make_pair(color_constant::honeydew, named_colors_traits::honeydew()));
+          vm_.insert(std::make_pair(color_constant::mint_cream, named_colors_traits::mint_cream()));
+          vm_.insert(std::make_pair(color_constant::azure, named_colors_traits::azure()));
+          vm_.insert(std::make_pair(color_constant::alice_blue, named_colors_traits::alice_blue()));
+          vm_.insert(std::make_pair(color_constant::ghost_white, named_colors_traits::ghost_white()));
+          vm_.insert(std::make_pair(color_constant::white_smoke, named_colors_traits::white_smoke()));
+          vm_.insert(std::make_pair(color_constant::seashell, named_colors_traits::seashell()));
+          vm_.insert(std::make_pair(color_constant::beige, named_colors_traits::beige()));
+          vm_.insert(std::make_pair(color_constant::old_lace, named_colors_traits::old_lace()));
+          vm_.insert(std::make_pair(color_constant::floral_white, named_colors_traits::floral_white()));
+          vm_.insert(std::make_pair(color_constant::ivory, named_colors_traits::ivory()));
+          vm_.insert(std::make_pair(color_constant::antique_white, named_colors_traits::antique_white()));
+          vm_.insert(std::make_pair(color_constant::linen, named_colors_traits::linen()));
+          vm_.insert(std::make_pair(color_constant::lavender_blush, named_colors_traits::lavender_blush()));
+          vm_.insert(std::make_pair(color_constant::misty_rose, named_colors_traits::misty_rose()));
+          vm_.insert(std::make_pair(color_constant::gainsboro, named_colors_traits::gainsboro()));
+          vm_.insert(std::make_pair(color_constant::light_grey, named_colors_traits::light_grey()));
+          vm_.insert(std::make_pair(color_constant::silver, named_colors_traits::silver()));
+          vm_.insert(std::make_pair(color_constant::dark_gray, named_colors_traits::dark_gray()));
+          vm_.insert(std::make_pair(color_constant::gray, named_colors_traits::gray()));
+          vm_.insert(std::make_pair(color_constant::dim_gray, named_colors_traits::dim_gray()));
+          vm_.insert(std::make_pair(color_constant::light_slate_gray, named_colors_traits::light_slate_gray()));
+          vm_.insert(std::make_pair(color_constant::slate_gray, named_colors_traits::slate_gray()));
+          vm_.insert(std::make_pair(color_constant::dark_slate_gray, named_colors_traits::dark_slate_gray()));
+          vm_.insert(std::make_pair(color_constant::black, named_colors_traits::black()));
+        }
+
+        return vm_;
+      }
+
+    private:
+      basic_color_mapper();
+
+      ~basic_color_mapper();
+
+    private:
+      // Convert string to lower case
+      static string_type to_lowercase(string_type str) {
+        boost::to_lower(str);
+        return str;
+      }
     };
 
   }
 }
-
-//Pink colors
-//Pink	FF C0 CB	255 192 203
-//LightPink	FF B6 C1	255 182 193
-//HotPink	FF 69 B4	255 105 180
-//DeepPink	FF 14 93	255  20 147
-//PaleVioletRed	DB 70 93	219 112 147
-//MediumVioletRed	C7 15 85	199  21 133
-//Red colors
-//LightSalmon	FF A0 7A	255 160 122
-//Salmon	FA 80 72	250 128 114
-//DarkSalmon	E9 96 7A	233 150 122
-//LightCoral	F0 80 80	240 128 128
-//IndianRed	CD 5C 5C	205  92  92
-//Crimson	DC 14 3C	220  20  60
-//FireBrick	B2 22 22	178  34  34
-//DarkRed	8B 00 00	139   0   0
-//Red	FF 00 00	255   0   0
-//Orange colors
-//OrangeRed	FF 45 00	255  69   0
-//Tomato	FF 63 47	255  99  71
-//Coral	FF 7F 50	255 127  80
-//DarkOrange	FF 8C 00	255 140   0
-//Orange	FF A5 00	255 165   0
-//Yellow colors
-//Yellow	FF FF 00	255 255   0
-//LightYellow	FF FF E0	255 255 224
-//LemonChiffon	FF FA CD	255 250 205
-//LightGoldenrodYellow	FA FA D2	250 250 210
-//PapayaWhip	FF EF D5	255 239 213
-//Moccasin	FF E4 B5	255 228 181
-//PeachPuff	FF DA B9	255 218 185
-//PaleGoldenrod	EE E8 AA	238 232 170
-//Khaki	F0 E6 8C	240 230 140
-//DarkKhaki	BD B7 6B	189 183 107
-//Gold	FF D7 00	255 215   0
-//Brown colors
-//Cornsilk	FF F8 DC	255 248 220
-//BlanchedAlmond	FF EB CD	255 235 205
-//Bisque	FF E4 C4	255 228 196
-//NavajoWhite	FF DE AD	255 222 173
-//Wheat	F5 DE B3	245 222 179
-//BurlyWood	DE B8 87	222 184 135
-//Tan	D2 B4 8C	210 180 140
-//RosyBrown	BC 8F 8F	188 143 143
-//SandyBrown	F4 A4 60	244 164  96
-//Goldenrod	DA A5 20	218 165  32
-//DarkGoldenrod	B8 86 0B	184 134  11
-//Peru	CD 85 3F	205 133  63
-//Chocolate	D2 69 1E	210 105  30
-//SaddleBrown	8B 45 13	139  69  19
-//Sienna	A0 52 2D	160  82  45
-//Brown	A5 2A 2A	165  42  42
-//Maroon	80 00 00	128   0   0
-//
-//Green colors
-//DarkOliveGreen	55 6B 2F	 85 107  47
-//Olive	80 80 00	128 128   0
-//OliveDrab	6B 8E 23	107 142  35
-//YellowGreen	9A CD 32	154 205  50
-//LimeGreen	32 CD 32	 50 205  50
-//Lime	00 FF 00	  0 255   0
-//LawnGreen	7C FC 00	124 252   0
-//Chartreuse	7F FF 00	127 255   0
-//GreenYellow	AD FF 2F	173 255  47
-//SpringGreen	00 FF 7F	  0 255 127
-//MediumSpringGreen	00 FA 9A	  0 250 154
-//LightGreen	90 EE 90	144 238 144
-//PaleGreen	98 FB 98	152 251 152
-//DarkSeaGreen	8F BC 8F	143 188 143
-//MediumSeaGreen	3C B3 71	 60 179 113
-//SeaGreen	2E 8B 57	 46 139  87
-//ForestGreen	22 8B 22	 34 139  34
-//Green	00 80 00	  0 128   0
-//DarkGreen	00 64 00	  0 100   0
-//Cyan colors
-//MediumAquamarine	66 CD AA	102 205 170
-//Aqua	00 FF FF	  0 255 255
-//Cyan	00 FF FF	  0 255 255
-//LightCyan	E0 FF FF	224 255 255
-//PaleTurquoise	AF EE EE	175 238 238
-//Aquamarine	7F FF D4	127 255 212
-//Turquoise	40 E0 D0	 64 224 208
-//MediumTurquoise	48 D1 CC	 72 209 204
-//DarkTurquoise	00 CE D1	  0 206 209
-//LightSeaGreen	20 B2 AA	 32 178 170
-//CadetBlue	5F 9E A0	 95 158 160
-//DarkCyan	00 8B 8B	  0 139 139
-//Teal	00 80 80	  0 128 128
-//Blue colors
-//LightSteelBlue	B0 C4 DE	176 196 222
-//PowderBlue	B0 E0 E6	176 224 230
-//LightBlue	AD D8 E6	173 216 230
-//SkyBlue	87 CE EB	135 206 235
-//LightSkyBlue	87 CE FA	135 206 250
-//DeepSkyBlue	00 BF FF	  0 191 255
-//DodgerBlue	1E 90 FF	 30 144 255
-//CornflowerBlue	64 95 ED	100 149 237
-//SteelBlue	46 82 B4	 70 130 180
-//RoyalBlue	41 69 E1	 65 105 225
-//Blue	00 00 FF	  0   0 255
-//MediumBlue	00 00 CD	  0   0 205
-//DarkBlue	00 00 8B	  0   0 139
-//Navy	00 00 80	  0   0 128
-//MidnightBlue	19 19 70	 25  25 112
-//
-//Purple colors
-//Lavender	E6 E6 FA	230 230 250
-//Thistle	D8 BF D8	216 191 216
-//Plum	DD A0 DD	221 160 221
-//Violet	EE 82 EE	238 130 238
-//Orchid	DA 70 D6	218 112 214
-//Fuchsia	FF 00 FF	255   0 255
-//Magenta	FF 00 FF	255   0 255
-//MediumOrchid	BA 55 D3	186  85 211
-//MediumPurple	93 70 DB	147 112 219
-//BlueViolet	8A 2B E2	138  43 226
-//DarkViolet	94 00 D3	148   0 211
-//DarkOrchid	99 32 CC	153  50 204
-//DarkMagenta	8B 00 8B	139   0 139
-//Purple	80 00 80	128   0 128
-//Indigo	4B 00 82	 75   0 130
-//DarkSlateBlue	48 3D 8B	 72  61 139
-//SlateBlue	6A 5A CD	106  90 205
-//MediumSlateBlue	7B 68 EE	123 104 238
-//White colors
-//White	FF FF FF	255 255 255
-//Snow	FF FA FA	255 250 250
-//Honeydew	F0 FF F0	240 255 240
-//MintCream	F5 FF FA	245 255 250
-//Azure	F0 FF FF	240 255 255
-//AliceBlue	F0 F8 FF	240 248 255
-//GhostWhite	F8 F8 FF	248 248 255
-//WhiteSmoke	F5 F5 F5	245 245 245
-//Seashell	FF F5 EE	255 245 238
-//Beige	F5 F5 DC	245 245 220
-//OldLace	FD F5 E6	253 245 230
-//FloralWhite	FF FA F0	255 250 240
-//Ivory	FF FF F0	255 255 240
-//AntiqueWhite	FA EB D7	250 235 215
-//Linen	FA F0 E6	250 240 230
-//LavenderBlush	FF F0 F5	255 240 245
-//MistyRose	FF E4 E1	255 228 225
-//Gray/Black colors
-//Gainsboro	DC DC DC	220 220 220
-//LightGrey	D3 D3 D3	211 211 211
-//Silver	C0 C0 C0	192 192 192
-//DarkGray	A9 A9 A9	169 169 169
-//Gray	80 80 80	128 128 128
-//DimGray	69 69 69	105 105 105
-//LightSlateGray	77 88 99	119 136 153
-//SlateGray	70 80 90	112 128 144
-//DarkSlateGray	2F 4F 4F	 47  79  79
-//Black	00 00 00	  0   0   0
