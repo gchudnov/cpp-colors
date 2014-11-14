@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.4)
-project(cpp_json_qi)
+project(cpp_colors)
 
 enable_testing()
 
