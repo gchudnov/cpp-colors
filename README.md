@@ -46,7 +46,7 @@ make
 
 #### Windows
 
-If using Visual Studio:
+Visual Studio:
  
     Follow the directions at the link for running CMake on Windows:
     http://www.cmake.org/runningcmake/
