@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iosfwd>
+#include <iomanip>
 #include <string>
 #include <sstream>
 #include <limits>

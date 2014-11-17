@@ -52,7 +52,7 @@ if(BUILD_TESTS)
 endif()
 
 if(BUILD_SAMPLES)
-  #add_subdirectory(examples)
+  add_subdirectory(examples)
 endif()
 
 # Clean the entire build directory
