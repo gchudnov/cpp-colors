@@ -1,14 +1,13 @@
-cpp-colors
-==========
+# cpp-colors
 
 A C++ color format library
 
 ### Directories
 
-* **bin** - project executables (tests & examples)
-* **examples** - cpp-json-qi examples
-* **include** - the sourcecode of cpp-json-qi
-* **test** - cpp-json-qi unit tests
+* **build** - directory for tests & examples
+* **examples** - examples source code
+* **include** - the source code of the library
+* **test** - test source code
 
 ### More information
 
@@ -22,31 +21,40 @@ A C++ color format library
 * Windows (x86/64)
    * Visual C++ 2014
 
-### Building
+### Installation
 
-cpp-colors tests depend on [Google Test Framework](https://code.google.com/p/googletest/)
+This is a header only library, in order to use it make the cpp-json-qi-`include` directory available to your project and include the header file in your source code:
 
-To build all tests & examples:
-
-```
-cd cpp-colors
-cmake .
-make
+```c++
+#include "cpp-colors/colors.h"
 ```
 
-### Building 'out of source'
+### Building Tests & Examples
 
-To create `out of source` build, invoke: 
+This project tests and examples use the Cross-platform Make ([CMake](http://www.cmake.org/)) build system.
+Tests depend on [Google Test Framework](https://code.google.com/p/googletest/). gtest-1.7.0 is recommended.
 
-```
-cd cpp-colors
-mkdir build
-cd build
+#### Linux
+
+The recommended way is to create 'out of source' build:
+
+```bash
+cd cpp-colors/build
 cmake ..
 make
 ```
 
-### Deleting all the files that a Make & CMake has produced 
+#### Windows
+
+If using Visual Studio:
+ 
+    Follow the directions at the link for running CMake on Windows:
+    http://www.cmake.org/runningcmake/
+    
+    NOTE: Select the "build" folder as the location to build the binaries.
+
+
+### Deleting all files Make & CMake created 
 
 ```
 make clean-all
@@ -58,4 +66,5 @@ make clean-all
 
 ### License
 
-Distributed under the [The MIT License (MIT)](https://github.com/gchudnov/cpp-json-qi/blob/master/LICENSE).
+Distributed under the [The MIT License (MIT)](https://github.com/gchudnov/cpp-colors/blob/master/LICENSE).
+
