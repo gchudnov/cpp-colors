@@ -1,6 +1,6 @@
 # cpp-colors
 
-A C++ color format library
+A C++ color format & conversion library
 
 ### Directories
 
