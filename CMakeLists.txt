@@ -8,10 +8,10 @@ set(WARNINGS)
 # Platform
 if(UNIX)
   option(BUILD_TESTS "Build tests." ON)
-  option(BUILD_SAMPLES "Build samples." ON)
+  option(BUILD_EXAMPLES "Build examples." ON)
 elseif(WIN32)
   option(BUILD_TESTS "Build tests." ON)
-  option(BUILD_SAMPLES "Build samples." ON)
+  option(BUILD_EXAMPLES "Build examples." ON)
 
   add_definitions(-DUNICODE -D_UNICODE)
 else()
@@ -51,7 +51,7 @@ if(BUILD_TESTS)
   add_subdirectory(test)
 endif()
 
-if(BUILD_SAMPLES)
+if(BUILD_EXAMPLES)
   add_subdirectory(examples)
 endif()
 
