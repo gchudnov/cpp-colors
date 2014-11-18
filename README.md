@@ -23,7 +23,7 @@ A C++ color format & conversion library
 
 ### Installation
 
-This is a header only library, in order to use it make the cpp-json-qi-`include` directory available to your project and include the header file in your source code:
+This is a header only library, in order to use it make the cpp-colors-`include` directory available to your project and include the header file in your source code:
 
 ```c++
 #include "cpp-colors/colors.h"
