@@ -1,4 +1,4 @@
-# cpp-colors
+# cpp-colors [![Build Status](https://travis-ci.org/gchudnov/cpp-colors.svg?branch=master)](https://travis-ci.org/gchudnov/cpp-colors)
 
 A C++ color format & conversion library
 
