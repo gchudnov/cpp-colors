@@ -278,6 +278,15 @@ namespace colors {
       return *this;
     }
 
+    template <typename U>
+    basic_color& operator *=(const U& scalar) {
+      this->r *= scalar;
+      this->g *= scalar;
+      this->b *= scalar;
+      this->a *= scalar;
+      return *this;
+    }
+
     // modulate
     basic_color& operator /=(const basic_color& other) {
       this->r /= other.r;
@@ -289,6 +298,15 @@ namespace colors {
 
     // scale
     basic_color& operator /=(const T& scalar) {
+      this->r /= scalar;
+      this->g /= scalar;
+      this->b /= scalar;
+      this->a /= scalar;
+      return *this;
+    }
+
+    template <typename U>
+    basic_color& operator /=(const U& scalar) {
       this->r /= scalar;
       this->g /= scalar;
       this->b /= scalar;
@@ -363,8 +381,29 @@ namespace colors {
     return result;
   }
 
+  template <typename U, typename T, typename PixelTraits>
+  basic_color<T, PixelTraits> operator *(const U& lhs, const basic_color<T, PixelTraits>& rhs) {
+    basic_color<T, PixelTraits> result(rhs);
+    result *= lhs;
+    return result;
+  }
+
+  template <typename U, typename T, typename PixelTraits>
+  basic_color<T, PixelTraits> operator *(const basic_color<T, PixelTraits>& lhs, const U& rhs) {
+    basic_color<T, PixelTraits> result(lhs);
+    result *= rhs;
+    return result;
+  }
+
   template <typename T, typename PixelTraits>
   basic_color<T, PixelTraits> operator /(const basic_color<T, PixelTraits>& lhs, const basic_color<T, PixelTraits>& rhs) {
+    basic_color<T, PixelTraits> result(lhs);
+    result /= rhs;
+    return result;
+  }
+
+  template <typename U, typename T, typename PixelTraits>
+  basic_color<T, PixelTraits> operator /(const basic_color<T, PixelTraits>& lhs, const U& rhs) {
     basic_color<T, PixelTraits> result(lhs);
     result /= rhs;
     return result;
