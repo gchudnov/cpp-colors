@@ -5,7 +5,6 @@
 #include <cstdint>
 #include <stdexcept>
 #include <boost/algorithm/string/case_conv.hpp>
-#include <boost/noncopyable.hpp>
 #include "wpf_constants.h"
 
 
@@ -142,8 +141,7 @@ namespace colors {
     };
 
     template<typename CharT>
-    struct basic_color_mapper
-      : private boost::noncopyable {
+    struct basic_color_mapper {
       typedef CharT char_type;
       typedef std::basic_string<char_type> string_type;
       typedef basic_named_color<char_type> named_colors_traits;
@@ -201,9 +199,10 @@ namespace colors {
       }
 
     private:
-      basic_color_mapper();
-
-      ~basic_color_mapper();
+      basic_color_mapper() = delete;
+      ~basic_color_mapper() = delete;
+      basic_color_mapper(const basic_color_mapper&) = delete;
+      basic_color_mapper& operator =(const basic_color_mapper&) = delete;
 
     private:
       // Convert string to lower case

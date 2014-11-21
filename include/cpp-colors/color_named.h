@@ -5,7 +5,6 @@
 #include <cstdint>
 #include <stdexcept>
 #include <boost/algorithm/string/case_conv.hpp>
-#include <boost/noncopyable.hpp>
 
 
 namespace colors {
