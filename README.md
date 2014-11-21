@@ -1,4 +1,4 @@
-# cpp-colors
+# cpp-colors [![Build Status](https://travis-ci.org/gchudnov/cpp-colors.svg?branch=master)](https://travis-ci.org/gchudnov/cpp-colors)
 
 A C++ color format & conversion library
 
@@ -19,7 +19,7 @@ A C++ color format & conversion library
    * GCC 4.8, Boost 1.54
    * Clang 3.4, Boost 1.54
 * Windows (x86/64)
-   * Visual C++ 2014
+   * MSVC 14, Boost 1.57
 
 ### Installation
 
