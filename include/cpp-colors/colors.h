@@ -3,6 +3,7 @@
 #include "color.h"
 #include "color_named.h"
 #include "color_io.h"
+#include "color_utils.h"
 #include "pixel_format.h"
 #include "pixel_utils.h"
 

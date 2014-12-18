@@ -325,3 +325,31 @@ TEST(Color, CanBeReadFromName) {
 
   ASSERT_EQ(wpf_color_constant::yellow, c2.value());
 }
+
+TEST(Brightness, CanBeMeasured) {
+  color c1;
+
+  c1 = boost::lexical_cast<color>(L"#ffef4444");
+  ASSERT_EQ(brightness_value::dark, brightness(c1));
+
+  c1 = boost::lexical_cast<color>(L"#ff009f75");
+  ASSERT_EQ(brightness_value::dark, brightness(c1));
+
+  c1 = boost::lexical_cast<color>(L"#fffaa31b");
+  ASSERT_EQ(brightness_value::light, brightness(c1));
+
+  c1 = boost::lexical_cast<color>(L"#ff88c6ed");
+  ASSERT_EQ(brightness_value::light, brightness(c1));
+
+  c1 = boost::lexical_cast<color>(L"#fffff000");
+  ASSERT_EQ(brightness_value::light, brightness(c1));
+
+  c1 = boost::lexical_cast<color>(L"#ff394ba0");
+  ASSERT_EQ(brightness_value::dark, brightness(c1));
+
+  c1 = boost::lexical_cast<color>(L"#ff82c341");
+  ASSERT_EQ(brightness_value::light, brightness(c1));
+
+  c1 = boost::lexical_cast<color>(L"#ffd54799");
+  ASSERT_EQ(brightness_value::dark, brightness(c1));
+}
