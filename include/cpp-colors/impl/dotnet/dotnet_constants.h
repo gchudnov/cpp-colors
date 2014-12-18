@@ -1,17 +1,15 @@
 #pragma once
 
-#include <boost/noncopyable.hpp>
-
 namespace colors {
   namespace dotnet {
 
     // Color Constants in ARGB pixel format (bgra32_traits)
-    struct color_constant
-      : private boost::noncopyable {
+    struct color_constant {
     private:
-      color_constant();
-
-      ~color_constant();
+      color_constant() = delete;
+      ~color_constant() = delete;
+      color_constant(const color_constant&) = delete;
+      color_constant& operator =(const color_constant&) = delete;
 
     public:
       enum known_color {
