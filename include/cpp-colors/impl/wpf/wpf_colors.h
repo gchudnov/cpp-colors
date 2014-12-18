@@ -1,15 +1,18 @@
 #pragma once
 
-#include <boost/noncopyable.hpp>
 #include "wpf_constants.h"
 
 namespace colors {
   namespace wpf {
 
     template<typename ColorType>
-    struct basic_colors
-      : private boost::noncopyable {
+    struct basic_colors {
       typedef ColorType color_type;
+
+      basic_colors() = delete;
+      ~basic_colors() = delete;
+      basic_colors(const basic_colors&) = delete;
+      basic_colors& operator =(const basic_colors&) = delete;
 
       static color_type black() {
         return color_type(color_constant::black);
