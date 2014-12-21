@@ -13,7 +13,7 @@ void print_color_value(const std::string& name, uint32_t value) {
 
 int main(int argc, char* argv[]) {
 
-  color c(wpf_color_constant::blue);
+  color c(wpf_colors::blue());
 
   print_color_value("bgra32", c.value());
   print_color_value("bgr32", c.value<pixel_format::bgr32>());
