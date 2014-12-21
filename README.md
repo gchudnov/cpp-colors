@@ -1,6 +1,11 @@
 # cpp-colors [![Build Status](https://travis-ci.org/gchudnov/cpp-colors.svg?branch=master)](https://travis-ci.org/gchudnov/cpp-colors)
 
-A C++ color format & conversion library
+A C++ header-only color format & conversion library.
+* Parsing and formatting colors: #aarrggbb, argb(a, r, g, b) & rgb(r, g, b)
+* Checking whether the given color is light or dark.
+* parsing named colors: x11, wpf & .net naming schemes
+* conversion between: bgr24, bgra32, bgr32, bgr565, bgr555, bgra5551, rgba32 and rgb32 pixel formats
+
 
 ### Directories
 
