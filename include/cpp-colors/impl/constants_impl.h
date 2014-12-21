@@ -6,8 +6,8 @@
 
 namespace colors {
 
-  typedef dotnet::color_constant dotnet_color_constant;
-  typedef wpf::color_constant wpf_color_constant;
-  typedef x11::color_constant x11_color_constant;
+  typedef dotnet::known_color dotnet_known_color;
+  typedef wpf::known_color wpf_known_color;
+  typedef x11::known_color x11_known_color;
 
 } // namespace colors

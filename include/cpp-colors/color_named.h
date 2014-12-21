@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <stdexcept>
 #include <boost/algorithm/string/case_conv.hpp>
+#include "impl/named_utils.h"
 
 
 namespace colors {
@@ -39,17 +40,18 @@ namespace colors {
     }
 
     // Get the name of the color
-    static string_type name(uint32_t value) {
+    static string_type name(typename ColorMapper::known_color_type value) {
+      return basic_named_color_converter::name(static_cast<uint32_t>(value));
+    }
+
+    // Get the name of the color
+    static string_type name(int32_t value) {
       const color_string_map& vm = color_mapper_type::get_color_to_string_map();
       typename color_string_map::const_iterator it = vm.find(value);
       if (it == vm.end())
         throw std::invalid_argument("Invalid color value.");
 
       return it->second;
-    }
-
-    static string_type name(int32_t value) {
-      return basic_named_color_converter::name(static_cast<uint32_t>(value));
     }
 
     // Returns TRUE if the argument is a named color

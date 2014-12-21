@@ -314,7 +314,7 @@ namespace colors {
     string_type name;
     if (is >> name) {
       if (named_converter::is_named(name)) {
-        c = basic_color<T, PixelTraits>(named_converter::value(name));
+        c = basic_color<T, PixelTraits>(value_of(named_converter::value(name)));
       }
       else {
         is.setstate(std::ios_base::failbit);

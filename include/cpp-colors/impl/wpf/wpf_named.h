@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <boost/algorithm/string/case_conv.hpp>
 #include "wpf_constants.h"
+#include "../named_utils.h"
 
 
 namespace colors {
@@ -144,30 +145,32 @@ namespace colors {
     struct basic_color_mapper {
       typedef CharT char_type;
       typedef std::basic_string<char_type> string_type;
-      typedef basic_named_color<char_type> named_colors_traits;
 
-      typedef std::map<string_type, color_constant::known_color> string_color_map;
+      typedef known_color known_color_type;
+      typedef basic_named_color<char_type> named_color_type;
+
+      typedef std::map<string_type, known_color> string_color_map;
       typedef std::map<uint32_t, string_type> color_string_map;
 
       // Build a name -> constant map
       static const string_color_map &get_string_to_color_map() {
         static string_color_map sm_;   // name -> value
         if (sm_.empty()) {
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::black()), color_constant::black));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::blue()), color_constant::blue));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::brown()), color_constant::brown));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::cyan()), color_constant::cyan));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::dark_gray()), color_constant::dark_gray));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::gray()), color_constant::gray));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::green()), color_constant::green));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::light_gray()), color_constant::light_gray));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::magenta()), color_constant::magenta));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::orange()), color_constant::orange));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::purple()), color_constant::purple));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::red()), color_constant::red));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::transparent()), color_constant::transparent));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::white()), color_constant::white));
-          sm_.insert(std::make_pair(to_lowercase(named_colors_traits::yellow()), color_constant::yellow));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::black()), known_color::black));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::blue()), known_color::blue));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::brown()), known_color::brown));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::cyan()), known_color::cyan));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::dark_gray()), known_color::dark_gray));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::gray()), known_color::gray));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::green()), known_color::green));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::light_gray()), known_color::light_gray));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::magenta()), known_color::magenta));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::orange()), known_color::orange));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::purple()), known_color::purple));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::red()), known_color::red));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::transparent()), known_color::transparent));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::white()), known_color::white));
+          sm_.insert(std::make_pair(to_lowercase(named_color_type::yellow()), known_color::yellow));
         }
 
         return sm_;
@@ -178,21 +181,21 @@ namespace colors {
         static color_string_map vm_;   // value -> name
 
         if (vm_.empty()) {
-          vm_.insert(std::make_pair(color_constant::black, named_colors_traits::black()));
-          vm_.insert(std::make_pair(color_constant::blue, named_colors_traits::blue()));
-          vm_.insert(std::make_pair(color_constant::brown, named_colors_traits::brown()));
-          vm_.insert(std::make_pair(color_constant::cyan, named_colors_traits::cyan()));
-          vm_.insert(std::make_pair(color_constant::dark_gray, named_colors_traits::dark_gray()));
-          vm_.insert(std::make_pair(color_constant::gray, named_colors_traits::gray()));
-          vm_.insert(std::make_pair(color_constant::green, named_colors_traits::green()));
-          vm_.insert(std::make_pair(color_constant::light_gray, named_colors_traits::light_gray()));
-          vm_.insert(std::make_pair(color_constant::magenta, named_colors_traits::magenta()));
-          vm_.insert(std::make_pair(color_constant::orange, named_colors_traits::orange()));
-          vm_.insert(std::make_pair(color_constant::purple, named_colors_traits::purple()));
-          vm_.insert(std::make_pair(color_constant::red, named_colors_traits::red()));
-          vm_.insert(std::make_pair(color_constant::transparent, named_colors_traits::transparent()));
-          vm_.insert(std::make_pair(color_constant::white, named_colors_traits::white()));
-          vm_.insert(std::make_pair(color_constant::yellow, named_colors_traits::yellow()));
+          vm_.insert(std::make_pair(value_of(known_color::black), named_color_type::black()));
+          vm_.insert(std::make_pair(value_of(known_color::blue), named_color_type::blue()));
+          vm_.insert(std::make_pair(value_of(known_color::brown), named_color_type::brown()));
+          vm_.insert(std::make_pair(value_of(known_color::cyan), named_color_type::cyan()));
+          vm_.insert(std::make_pair(value_of(known_color::dark_gray), named_color_type::dark_gray()));
+          vm_.insert(std::make_pair(value_of(known_color::gray), named_color_type::gray()));
+          vm_.insert(std::make_pair(value_of(known_color::green), named_color_type::green()));
+          vm_.insert(std::make_pair(value_of(known_color::light_gray), named_color_type::light_gray()));
+          vm_.insert(std::make_pair(value_of(known_color::magenta), named_color_type::magenta()));
+          vm_.insert(std::make_pair(value_of(known_color::orange), named_color_type::orange()));
+          vm_.insert(std::make_pair(value_of(known_color::purple), named_color_type::purple()));
+          vm_.insert(std::make_pair(value_of(known_color::red), named_color_type::red()));
+          vm_.insert(std::make_pair(value_of(known_color::transparent), named_color_type::transparent()));
+          vm_.insert(std::make_pair(value_of(known_color::white), named_color_type::white()));
+          vm_.insert(std::make_pair(value_of(known_color::yellow), named_color_type::yellow()));
         }
 
         return vm_;

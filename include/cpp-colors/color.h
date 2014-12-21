@@ -178,16 +178,7 @@ namespace colors {
       /* no-op */
     }
 
-    // gets the color using the packed value. The packed value must be in the bgra32_traits color format
-    // usualy we use this constructor to construct the color from some 'color constant'
-    template <typename ColorConstant>
-    basic_color(typename ColorConstant::known_color c) {
-      basic_color temp = basic_color::create_from_value<bgra32_traits>(static_cast<bgra32_traits::pixel_type>(c));
-      std::swap(*this, temp);
-    }
-
-    // gets the color using the packed value. The packed value must be in the bgra32_traits color format
-    // usualy we use this constructor to construct the color from some 'color constant' (see color_constants.h)
+    // constructs a color using the packed value
     basic_color(typename PixelTraits::pixel_type argb) {
       basic_color temp = basic_color::create_from_value<PixelTraits>(argb);
       std::swap(*this, temp);
@@ -433,7 +424,6 @@ namespace colors {
 
     return *(arr[index].second);
   }
-
 
   typedef basic_color<uint8_t> color;       /* color_argb */
   typedef basic_color<double>  colorF;      /* color_argbF */

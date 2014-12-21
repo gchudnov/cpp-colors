@@ -14,4 +14,5 @@
 namespace colors {
   typedef basic_named_color_converter<dotnet_color_mapper> dotnet_named_color_converter;
   typedef basic_named_color_converter<wpf_color_mapper> wpf_named_color_converter;
+  typedef basic_named_color_converter<x11_color_mapper> x11_named_color_converter;
 }
